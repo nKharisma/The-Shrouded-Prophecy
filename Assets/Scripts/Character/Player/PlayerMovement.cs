@@ -13,7 +13,10 @@ public class PlayerMovement : CharacterMovement
     private Vector3 moveDirection;
     [SerializeField] float walkSpeed = 2;
     [SerializeField] float runSpeed = 4.5f;
-
+    [SerializeField] float rotationSpeed = 10;
+    private Quaternion rightRotation = Quaternion.Euler(0, 0, 0);
+    private Quaternion leftRotation = Quaternion.Euler(0, -180, 0);
+    
     protected override void Awake()
     {
         base.Awake();
@@ -24,6 +27,7 @@ public class PlayerMovement : CharacterMovement
     public void Movement()
     {
         GroundMovement();
+        Rotation();
     }
     
     private void GetVerticalAndHorizontalMovement()
@@ -73,5 +77,20 @@ public class PlayerMovement : CharacterMovement
         {
             player.characterController.Move(moveDirection * walkSpeed * Time.deltaTime);
         }
+    }
+    
+    private void Rotation()
+    {
+        if (horizontalMovement > 0)
+    {
+        // Face right
+        transform.rotation = Quaternion.Slerp(transform.rotation, rightRotation, Time.deltaTime * rotationSpeed);
+    }
+    else if (horizontalMovement < 0)
+    {
+        // Face left
+        transform.rotation = Quaternion.Slerp(transform.rotation, leftRotation, Time.deltaTime * rotationSpeed);
+    }
+        
     }
 }
