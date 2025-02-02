@@ -23,9 +23,11 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange)
         {
             visualCue.SetActive(true);
+            
+            // currently being cheesed
              if (Input.GetKeyDown(KeyCode.E))
              {
-                 Debug.Log(inkJSON.text);
+                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
              }
         }
         else
