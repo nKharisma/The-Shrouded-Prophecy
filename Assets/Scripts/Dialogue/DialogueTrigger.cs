@@ -36,17 +36,21 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "PLAYER")
+        Debug.Log("Collided with: " + collider.gameObject.name);
+        if (collider.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player entered range");
             playerInRange = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "PLAYER")
+        Debug.Log("Exited trigger: " + collider.gameObject.name);
+        if (collider.gameObject.CompareTag("Player"))
         {
-            playerInRange = false;  
+            Debug.Log("Player exited range");
+            playerInRange = false;
         }
     }
 }
