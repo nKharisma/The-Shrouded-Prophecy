@@ -16,7 +16,8 @@ public class PlayerMovement : CharacterMovement
     [SerializeField] float rotationSpeed = 10;
     private Quaternion rightRotation = Quaternion.Euler(0, 0, 0);
     private Quaternion leftRotation = Quaternion.Euler(0, -180, 0);
-    
+
+    public LayerMask terrainLayer;
     protected override void Awake()
     {
         base.Awake();
@@ -77,20 +78,26 @@ public class PlayerMovement : CharacterMovement
         {
             player.characterController.Move(moveDirection * walkSpeed * Time.deltaTime);
         }
+        
+        // ground check
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, terrainLayer)) {
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
     }
     
     private void Rotation()
     {
         if (horizontalMovement > 0)
-    {
-        // Face right
-        transform.rotation = Quaternion.Slerp(transform.rotation, rightRotation, Time.deltaTime * rotationSpeed);
-    }
+        {
+            // Face right
+            transform.rotation = Quaternion.Slerp(transform.rotation, rightRotation, Time.deltaTime * rotationSpeed);
+        }
     else if (horizontalMovement < 0)
-    {
-        // Face left
-        transform.rotation = Quaternion.Slerp(transform.rotation, leftRotation, Time.deltaTime * rotationSpeed);
-    }
+        {
+            // Face left
+            transform.rotation = Quaternion.Slerp(transform.rotation, leftRotation, Time.deltaTime * rotationSpeed);
+        }
         
     }
 }
