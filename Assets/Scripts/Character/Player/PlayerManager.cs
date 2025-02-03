@@ -14,6 +14,11 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
     
     protected override void Update()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
         base.Update();
         
         //stuff only for the player

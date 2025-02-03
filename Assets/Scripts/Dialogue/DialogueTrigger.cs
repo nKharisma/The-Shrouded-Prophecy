@@ -20,10 +20,10 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange)
+        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
-            
+
             // currently being cheesed
              if (Input.GetKeyDown(KeyCode.E))
              {

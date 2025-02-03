@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     private Story currentStory;
-    private bool dialogueIsPlaying;
+    public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
 
