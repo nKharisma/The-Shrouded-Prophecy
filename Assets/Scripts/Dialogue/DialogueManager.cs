@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
+    private PlayerControls inputActions;
 
     private void Awake()
     {
@@ -23,6 +24,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         instance = this;
+
+        inputActions = new PlayerControls();
+        inputActions.Enable();
     }
 
     public static DialogueManager GetInstance()
@@ -45,7 +49,7 @@ public class DialogueManager : MonoBehaviour
 
         // handle continuing to next line in the dialogue when submit is pressed
         // currently being cheesed
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (inputActions != null && inputActions.PlayerMovement.NextDialogue.WasPressedThisFrame())
         {
             ContinueStory();
         }
