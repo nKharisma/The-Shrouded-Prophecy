@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance; //singleton instance
+    
+    public PlayerManager player;
     PlayerControls inputActions; //input actions reference
     [SerializeField] Vector2 movement; //serialized for debugging purposes
     [SerializeField] public float horizontal; //serialized for debugging purposes
@@ -66,5 +68,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             moveAmount = 1f;
         }
+        
+        player.playerAnimatorManager.UpdateAnimatorValues(vertical, horizontal); //update the animator values with the vertical and horizontal input
     }
 }

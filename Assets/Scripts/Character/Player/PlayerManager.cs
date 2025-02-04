@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager //inherit from CharacterManager
 {
-    PlayerMovement playerMotionManager;
+    public PlayerMovement playerMotionManager;
+    public PlayerAnimatorManager playerAnimatorManager;
     protected override void Awake() { 
         base.Awake();
         
         //stuff only for the player
         playerMotionManager = GetComponent<PlayerMovement>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        PlayerInputManager.instance.player = this;
     }
     
     protected override void Update()

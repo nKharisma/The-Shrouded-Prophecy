@@ -25,10 +25,10 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
 
             // currently being cheesed
-             if (Input.GetKeyDown(KeyCode.E))
-             {
-                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+            }
         }
         else
         {
