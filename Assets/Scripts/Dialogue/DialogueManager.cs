@@ -29,6 +29,9 @@ public class DialogueManager : MonoBehaviour
     private Vector3 choicePosition = new Vector3(0f, 82f, 0f);
     private RectTransform panelRect;
 
+    private Vector3 downPosition = new Vector3(0f, 5f, 0f);
+    private Vector3 sidePosition = new Vector3(340f, 13f, 0f);
+    private RectTransform iconRect;
 
     private void Awake()
     {
@@ -40,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         panelRect = dialoguePanel.GetComponent<RectTransform>();
+        iconRect = continueIcon.GetComponent<RectTransform>();
 
         inputActions = new PlayerControls();
         inputActions.Enable();
@@ -120,18 +124,20 @@ public class DialogueManager : MonoBehaviour
         int index = 0;
         foreach (Choice choice in currentChoices)
         {
+                        iconRect.transform.rotation = Quaternion.Euler(0, 0, 0);
             panelRect.anchoredPosition = choicePosition;
+            iconRect.anchoredPosition = downPosition;
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
-            continueIcon.SetActive(true);
             index++;
         }
 
         for (int i = index; i < choices.Length; i++)
         {
-            continueIcon.SetActive(false);
             choices[i].gameObject.SetActive(false);
+            iconRect.anchoredPosition = sidePosition;
             panelRect.anchoredPosition = noChoicePosition;
+            iconRect.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
         StartCoroutine(SelectFirstChoice());
