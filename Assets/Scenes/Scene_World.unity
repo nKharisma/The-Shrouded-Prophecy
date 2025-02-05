@@ -139357,6 +139357,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 640749691419761822, guid: e2ec9d9f43aa64939b7d3e9e4148eb1f,
         type: 3}
+      propertyPath: continueIcon
+      value: 
+      objectReference: {fileID: 384634067}
+    - target: {fileID: 640749691419761822, guid: e2ec9d9f43aa64939b7d3e9e4148eb1f,
+        type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1925141470}

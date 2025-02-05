@@ -14,6 +14,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
 
+    [Header("Continue Icon")]
+    [SerializeField] private GameObject continueIcon;
+
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
@@ -21,6 +24,11 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
     private PlayerControls inputActions;
+
+    private Vector3 noChoicePosition = new Vector3(0f, 20f, 0f);
+    private Vector3 choicePosition = new Vector3(0f, 82f, 0f);
+    private RectTransform panelRect;
+
 
     private void Awake()
     {
@@ -30,6 +38,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         instance = this;
+
+        panelRect = dialoguePanel.GetComponent<RectTransform>();
 
         inputActions = new PlayerControls();
         inputActions.Enable();
@@ -63,7 +73,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         // handle continuing to next line in the dialogue when submit is pressed
-        // currently being cheesed
         if (inputActions != null && inputActions.PlayerMovement.NextDialogue.WasPressedThisFrame())
         {
             ContinueStory();
@@ -111,14 +120,18 @@ public class DialogueManager : MonoBehaviour
         int index = 0;
         foreach (Choice choice in currentChoices)
         {
+            panelRect.anchoredPosition = choicePosition;
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
+            continueIcon.SetActive(true);
             index++;
         }
 
         for (int i = index; i < choices.Length; i++)
         {
+            continueIcon.SetActive(false);
             choices[i].gameObject.SetActive(false);
+            panelRect.anchoredPosition = noChoicePosition;
         }
 
         StartCoroutine(SelectFirstChoice());
