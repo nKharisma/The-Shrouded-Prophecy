@@ -11,11 +11,15 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private TextAsset inkJSON;
 
     private bool playerInRange;
+    private PlayerControls inputActions;
 
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+
+        inputActions = new PlayerControls();
+        inputActions.Enable();
     }
 
     private void Update()
@@ -24,11 +28,10 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
 
-            // currently being cheesed
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-            }
+             if (inputActions != null && inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
+             {
+                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+             }
         }
         else
         {
