@@ -18,7 +18,6 @@ public class PlayerMovement : CharacterMovement
     private Quaternion leftRotation = Quaternion.Euler(0, -180, 0);
 
     public LayerMask terrainLayer;
-    private Animator animator;
     protected override void Awake()
     {
         base.Awake();
@@ -29,7 +28,7 @@ public class PlayerMovement : CharacterMovement
     public void Movement()
     {
         GroundMovement();
-        //Rotation();
+        Rotation();
     }
     
     private void GetVerticalAndHorizontalMovement()
