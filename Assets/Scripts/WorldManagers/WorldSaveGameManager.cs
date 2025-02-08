@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //SceneManagement is a library that allows you to do some functionality with scenes such as loading a new scene
+using System.IO;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager instance; //a reference to the WorldSaveGameManager instance
     
-    [SerializeField] PlayerManager player;
+    [SerializeField] public PlayerManager player;
+    [SerializeField] private GameObject playerPrefab;
     [SerializeField] int worldSceneIndex; //index of the world scene 
     
     [Header("Character Data")]
     public CharacterSaveData currentSaveData; //a reference to the current character data
     private SaveGameFileWriter saveGameFileWriter;
     
-    public Enums.SaveSlot currentSaveSlot; //This is a reference to the current save slot
+    public SaveSlot currentSaveSlot; //This is a reference to the current save slot
     private string saveFileName;
     
     [Header("Save/Load")]
     [SerializeField] bool isSaving, isLoading; //These are bools to check if the game is saving or loading
     
     [Header("Save Slots")]
-    public CharacterSaveData saveSlot01, saveSlot02, saveSlot03, saveSlot04, saveSlot05; //These are references to the save slots
+    public CharacterSaveData saveSlot01, saveSlot02, saveSlot03, saveSlot04, saveSlot05, saveSlot06; //These are references to the save slots
     
     
     private void Awake()
@@ -40,6 +42,7 @@ public class WorldSaveGameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject); //Don't destroy the game object when loading a new scene
+        LoadAllSaveSlots();
     }
     
     private void Update()
@@ -59,14 +62,146 @@ public class WorldSaveGameManager : MonoBehaviour
     
     public void NewGame()
     {
-        WhichSaveFile();
+        saveGameFileWriter = new SaveGameFileWriter();
+        saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath;
         
-        currentSaveData = new CharacterSaveData();
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot1);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot1;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot2);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot2;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot3);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot3;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot4);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot4;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot5);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot5;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot6);
+        
+        if(!saveGameFileWriter.DoesSaveFileExist())
+        {
+            currentSaveSlot = SaveSlot.Slot6;
+            
+            currentSaveData = new CharacterSaveData();
+            
+            GameObject playerInstance = Instantiate(playerPrefab);
+            PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                currentSaveData.xPosition = playerManager.transform.position.x;
+                currentSaveData.yPosition = playerManager.transform.position.y;
+                currentSaveData.zPosition = playerManager.transform.position.z;
+            }
+            Destroy(playerInstance);
+            
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        TitleScreenManager.instance.DetermineFreeSaveSlots(); //if we reach here, there are no save slots available
     }
     
     public void SaveGame()
     {
-        WhichSaveFile();
+        saveFileName = WhichSaveFile(currentSaveSlot);
         
         saveGameFileWriter = new SaveGameFileWriter();
         saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; //set the save file directory path
@@ -79,7 +214,7 @@ public class WorldSaveGameManager : MonoBehaviour
     
     public void LoadGame()
     {
-        WhichSaveFile();
+        saveFileName = WhichSaveFile(currentSaveSlot);
         
         saveGameFileWriter = new SaveGameFileWriter();
         saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; //set the save file directory path
@@ -90,38 +225,72 @@ public class WorldSaveGameManager : MonoBehaviour
         StartCoroutine(LoadWorldScene()); //load the world scene while the save file is loading
     }
     
+    private void LoadAllSaveSlots() //preload all save slots
+    {
+        saveGameFileWriter = new SaveGameFileWriter();
+        saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; //set the save file directory path
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot1);
+        saveSlot01 = saveGameFileWriter.LoadSaveFile(); 
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot2); 
+        saveSlot02 = saveGameFileWriter.LoadSaveFile(); 
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot3); 
+        saveSlot03 = saveGameFileWriter.LoadSaveFile(); 
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot4); 
+        saveSlot04 = saveGameFileWriter.LoadSaveFile(); 
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot5); 
+        saveSlot05 = saveGameFileWriter.LoadSaveFile(); 
+        
+        saveGameFileWriter.saveFileName = WhichSaveFile(SaveSlot.Slot6);
+        saveSlot06 = saveGameFileWriter.LoadSaveFile();
+    }
+    
     public IEnumerator LoadWorldScene()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); //Load the world scene asynchronously
+        
         while (!asyncLoad.isDone) //while the scene is not done loading
         {
             yield return null; //return null
         }
+        
+        player.LoadPlayerData(ref currentSaveData);
     }
     
-    private void WhichSaveFile()
+    public string WhichSaveFile(SaveSlot characterSlot) //This function returns the save file name
     {
-        switch (currentSaveSlot) //Switch statement for the current save slot
+        string saveFileName = "";
+    
+        switch (characterSlot) //Switch statement for the current save slot
         {
-            case Enums.SaveSlot.Slot1: 
+            case SaveSlot.Slot1: 
                 saveFileName = "slot_01";
                 break;
-            case Enums.SaveSlot.Slot2: 
+            case SaveSlot.Slot2: 
                 saveFileName = "slot_02";
                 break;
-            case Enums.SaveSlot.Slot3: 
+            case SaveSlot.Slot3: 
                 saveFileName = "slot_03"; 
                 break;
-            case Enums.SaveSlot.Slot4: 
+            case SaveSlot.Slot4: 
                 saveFileName = "slot_04"; 
                 break;
-            case Enums.SaveSlot.Slot5: 
+            case SaveSlot.Slot5: 
                 saveFileName = "slot_05"; 
+                break;
+            case SaveSlot.Slot6: 
+                saveFileName = "slot_06"; 
                 break;
             default: //Default case
                 Debug.LogError("No save slot selected"); //Log an error message
                 break;
         }
+        
+        return saveFileName;
     }
     
     public int GetWorldSceneIndex()
