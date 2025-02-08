@@ -10,7 +10,12 @@ public class SaveGameFileWriter
     
     public bool DoesSaveFileExist()
     {
-        return File.Exists(saveFileDirectoryPath + saveFileName); //returns true if the file exists
+        return File.Exists(Path.Combine(saveFileDirectoryPath, saveFileName)); //returns true or false if the file exists
+    }
+    
+    public System.DateTime GetFileCreationDate()
+    {
+        return File.GetCreationTime(Path.Combine(saveFileDirectoryPath, saveFileName)); //returns the creation date of the file
     }
     
     public void CreateNewSaveFile(CharacterSaveData characterSaveData)
@@ -20,7 +25,7 @@ public class SaveGameFileWriter
         try {
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
             //File.Create(saveFileDirectoryPath + saveFileName); //creates a new save file
-            Debug.Log("New save file created at: " + saveFileDirectoryPath + saveFileName); 
+            Debug.Log("New save file created at: " + savePath); 
             
             string saveData = JsonUtility.ToJson(characterSaveData, true); //converts the save data to a json string
             
@@ -41,7 +46,7 @@ public class SaveGameFileWriter
     {
         CharacterSaveData characterData = new CharacterSaveData(); //creates a new instance of the save data class
         
-        string loadedDataPath = saveFileDirectoryPath + saveFileName; //gets the path of the save file
+        string loadedDataPath = Path.Combine(saveFileDirectoryPath, saveFileName); //gets the path of the save file
         
         if(File.Exists(loadedDataPath)) //checks if the file exists
         {
@@ -68,11 +73,11 @@ public class SaveGameFileWriter
     
     public void WriteSaveFile(string saveData)
     {
-        File.WriteAllText(saveFileDirectoryPath + saveFileName, saveData); //writes the save data to the file
+        File.WriteAllText(Path.Combine(saveFileDirectoryPath, saveFileName), saveData); //writes the save data to the file
     }
     
     public void DeleteSaveFile()
     {
-        File.Delete(saveFileDirectoryPath + saveFileName); //deletes the save file
+        File.Delete(Path.Combine(saveFileDirectoryPath, saveFileName)); //deletes the save file
     }
 }

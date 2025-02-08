@@ -6,6 +6,7 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
 {
     public PlayerMovement playerMotionManager;
     public PlayerAnimatorManager playerAnimatorManager;
+    
     protected override void Awake() { 
         base.Awake();
         
@@ -13,6 +14,7 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
         playerMotionManager = GetComponent<PlayerMovement>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         PlayerInputManager.instance.player = this;
+        WorldSaveGameManager.instance.player = this;
     }
     
     protected override void Update()
@@ -30,7 +32,6 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
     
     public void SavePlayerData(ref CharacterSaveData saveData)
     {
-        //saveData.characterName = characterName; //haven't defined characterName yet
         saveData.yPosition = transform.position.y;
         saveData.xPosition = transform.position.x;
         saveData.zPosition = transform.position.z;

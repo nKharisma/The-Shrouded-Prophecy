@@ -9,11 +9,10 @@ using UnityEngine;
     {
         //can only save data with basic data types (int, float, string, etc)
         [Header("Character Info")]
-        public string characterName;
+        public string questName;
         
         [Header("User Stats")]
         public float secondsPlayed;
-        
         
         [Header("Player Position")]
         public float xPosition;
