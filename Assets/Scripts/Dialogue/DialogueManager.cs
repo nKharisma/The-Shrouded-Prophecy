@@ -124,7 +124,7 @@ public class DialogueManager : MonoBehaviour
         int index = 0;
         foreach (Choice choice in currentChoices)
         {
-                        iconRect.transform.rotation = Quaternion.Euler(0, 0, 0);
+            iconRect.transform.rotation = Quaternion.Euler(0, 0, 0);
             panelRect.anchoredPosition = choicePosition;
             iconRect.anchoredPosition = downPosition;
             choices[index].gameObject.SetActive(true);
