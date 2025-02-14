@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SCBattlePlayerControls : MonoBehaviour
 {
-    public float movSpeed;
+    [SerializeField] public float movSpeed;
     float speedX, speedY;
     Rigidbody2D rigidBod;
 

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public Image healthBar;
-    public float healthAmount = 100f;
+    [SerializeField] public Image healthBar;
+    [SerializeField] public float healthAmount = 100f;
 
     // Start is called before the first frame update
     void Start()

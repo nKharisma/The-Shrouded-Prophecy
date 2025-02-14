@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    public Transform[] patrolPoints;
-    public int targetPoint;
-    public float speed;
+    [SerializeField] public Transform[] patrolPoints;
+    [SerializeField] public int targetPoint;
+    [SerializeField] public float speed;
     // Start is called before the first frame update
     void Start()
     {
