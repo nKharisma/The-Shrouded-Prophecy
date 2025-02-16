@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2004f757a4f1aea4a8cac9a0679085c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
+  characterController: {fileID: 4664393311167035296}
   animator: {fileID: 0}
   playerMotionManager: {fileID: 0}
   playerAnimatorManager: {fileID: 0}
