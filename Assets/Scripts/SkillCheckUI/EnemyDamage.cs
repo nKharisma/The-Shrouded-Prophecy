@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class EnemyDamage : MonoBehaviour
         if (hit.CompareTag("Enemy"))
         {
             healthManager.TakeDamage(damage);
+        }
+
+        if (healthManager.healthAmount <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
