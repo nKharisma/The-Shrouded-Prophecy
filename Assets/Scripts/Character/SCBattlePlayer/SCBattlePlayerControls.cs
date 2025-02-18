@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class SCBattlePlayerControls : MonoBehaviour
 {
-    [SerializeField] public float movSpeed;
-    float speedX, speedY;
-    Rigidbody2D rigidBod;
+    [SerializeField] private float movSpeed;
+    [SerializeField] private RectTransform skillCheckSquare;  // Reference to the square in the canvas
+    
+    private Vector2 moveInput;
+    private Vector2 moveVelocity;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-      rigidBod = GetComponent<Rigidbody2D>();  
-    }
-
-    // Update is called once per frame
     void Update()
     {
-       speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
-       speedY = Input.GetAxisRaw("Vertical") * movSpeed;
-       rigidBod.velocity = new Vector2(speedX, speedY);
+        // Get input for movement (use any method you prefer, such as keyboard input)
+        moveInput.x = Input.GetAxisRaw("Horizontal") * movSpeed;
+        moveInput.y = Input.GetAxisRaw("Vertical") * movSpeed;
+
+        // Move the square based on the input
+        moveVelocity = moveInput.normalized * movSpeed;
+
+        // Update position based on RectTransform (UI element movement)
+        skillCheckSquare.anchoredPosition += moveVelocity * Time.deltaTime;
     }
 }
+
+
+
+
+
