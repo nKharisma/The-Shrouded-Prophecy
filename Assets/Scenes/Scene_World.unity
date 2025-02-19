@@ -147088,6 +147088,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 713754276667772334, guid: 05a127afd466a4ca9a962828a72f7972,
+        type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 1973190519}
+    - target: {fileID: 713754276667772334, guid: 05a127afd466a4ca9a962828a72f7972,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1973190519}
+    - target: {fileID: 713754276667772334, guid: 05a127afd466a4ca9a962828a72f7972,
+        type: 3}
+      propertyPath: Canvaspanel
+      value: 
+      objectReference: {fileID: 1973190519}
     - target: {fileID: 1018026410481150594, guid: 05a127afd466a4ca9a962828a72f7972,
         type: 3}
       propertyPath: m_Layer
@@ -147220,6 +147235,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a127afd466a4ca9a962828a72f7972, type: 3}
+--- !u!224 &1973190519 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6417748811914181535, guid: 05a127afd466a4ca9a962828a72f7972,
+    type: 3}
+  m_PrefabInstance: {fileID: 1973190518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1975611720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161216,6 +161237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movSpeed: 10
+  Canvaspanel: {fileID: 0}
   skillCheckSquare: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
