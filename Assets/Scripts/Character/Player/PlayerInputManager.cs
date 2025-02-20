@@ -32,6 +32,11 @@ public class PlayerInputManager : MonoBehaviour
     }
     
     private void Update() {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
         MovementInput(); //call the movement input method
     }
     
