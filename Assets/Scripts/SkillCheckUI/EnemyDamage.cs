@@ -10,7 +10,7 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hit)
     {
-        if (hit.CompareTag("Enemy"))
+        if (hit.CompareTag("Player"))
         {
             healthManager.TakeDamage(damage);
         }
