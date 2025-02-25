@@ -8,18 +8,24 @@ public class SkillCheckManager : MonoBehaviour
     [Header("Skill Check UI")]
     [SerializeField] private GameObject skillCheckUI;
 
+    private DialogueManager dialogueManager;
+
     public bool skillCheckUIIsPlaying { get; private set; }
 
     void Start()
     {
         skillCheckUIIsPlaying = false;
         skillCheckUI.SetActive(false);
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     public void playSkillCheckUI()
     {
         skillCheckUIIsPlaying = true;
         skillCheckUI.SetActive(true);
+
+        dialogueManager.PauseDialogue();
     }
 
     public void endConditions(int condition)
@@ -37,5 +43,7 @@ public class SkillCheckManager : MonoBehaviour
             skillCheckUIIsPlaying = false;
             skillCheckUI.SetActive(false);
         }
+
+        dialogueManager.UnPauseDialogue();
     }
 }

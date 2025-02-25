@@ -20,7 +20,9 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+
     public bool dialogueIsPlaying { get; private set; }
+    public bool isPaused { get; private set; }
 
     private static DialogueManager instance;
     private PlayerControls inputActions;
@@ -57,6 +59,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        isPaused = false;
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -73,7 +76,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (!dialogueIsPlaying)
+        if (!dialogueIsPlaying || isPaused)
         {
             return;
         }
@@ -98,12 +101,21 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
     }
 
+    public void PauseDialogue()
+    {
+        isPaused = true;
+    }
+
+    public void UnPauseDialogue()
+    {
+        isPaused = false;
+    }
+
     private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-
 
         currentStory.UnbindExternalFunction("playSkillCheckUI");
     }
