@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
     private PlayerControls inputActions;
+    private SkillCheckManager skillCheck;
 
     private Vector3 noChoicePosition = new Vector3(0f, 20f, 0f);
     private Vector3 choicePosition = new Vector3(0f, 82f, 0f);
@@ -60,6 +61,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
+        skillCheck = FindObjectOfType<SkillCheckManager>();
 
         int index = 0;
         foreach (GameObject choice in choices)
@@ -89,6 +91,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        currentStory.BindExternalFunction("playSkillCheckUI", () => {
+            skillCheck.playSkillCheckUI();
+        });
+
         ContinueStory();
     }
 
@@ -97,6 +103,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+
+        currentStory.UnbindExternalFunction("playSkillCheckUI");
     }
 
     private void ContinueStory()
