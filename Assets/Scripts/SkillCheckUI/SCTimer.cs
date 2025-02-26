@@ -7,9 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class SCTimer : MonoBehaviour
 {
-    private int waitSecondsInt;
-    [SerializeField] public float waitSeconds;
+    [SerializeField] public float startWaitSeconds;
     [SerializeField] TMP_Text text;
+
+    private SkillCheckManager skillCheck;
+    private HealthManager healthManager;
+
+    private float waitSeconds;
+    private int waitSecondsInt;
+    
+    void Start()
+    {
+        skillCheck = FindObjectOfType<SkillCheckManager>();
+        healthManager = FindObjectOfType<HealthManager>();
+        resetTimer();
+    }
 
     private void FixedUpdate()
     {
@@ -21,7 +33,16 @@ public class SCTimer : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            skillCheck.endConditions(1);
+            resetTimer();
+
+            healthManager.Heal(100f);
         }
+    }
+
+    public void resetTimer()
+    {
+        waitSeconds = startWaitSeconds;
+        text.text = ((int)waitSeconds).ToString();
     }
 }

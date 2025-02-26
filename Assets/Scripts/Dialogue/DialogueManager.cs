@@ -20,10 +20,13 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+
     public bool dialogueIsPlaying { get; private set; }
+    public bool isPaused { get; private set; }
 
     private static DialogueManager instance;
     private PlayerControls inputActions;
+    private SkillCheckManager skillCheck;
 
     private Vector3 noChoicePosition = new Vector3(0f, 20f, 0f);
     private Vector3 choicePosition = new Vector3(0f, 82f, 0f);
@@ -56,10 +59,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        isPaused = false;
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
+        skillCheck = FindObjectOfType<SkillCheckManager>();
 
         int index = 0;
         foreach (GameObject choice in choices)
@@ -71,7 +76,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (!dialogueIsPlaying)
+        if (!dialogueIsPlaying || isPaused)
         {
             return;
         }
@@ -89,7 +94,22 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        currentStory.BindExternalFunction("playSkillCheckUI", async () => {
+            await skillCheck.playSkillCheckUI();
+            currentStory.variablesState["result"] = skillCheck.conditionResult;
+        });
+
         ContinueStory();
+    }
+
+    public void PauseDialogue()
+    {
+        isPaused = true;
+    }
+
+    public void UnPauseDialogue()
+    {
+        isPaused = false;
     }
 
     private void ExitDialogueMode()
@@ -97,6 +117,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        currentStory.UnbindExternalFunction("playSkillCheckUI");
     }
 
     private void ContinueStory()
