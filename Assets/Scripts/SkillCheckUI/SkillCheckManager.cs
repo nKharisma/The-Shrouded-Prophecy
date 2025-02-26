@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 
 public class SkillCheckManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class SkillCheckManager : MonoBehaviour
 
     private DialogueManager dialogueManager;
 
+    public int conditionResult = 0;
     public bool skillCheckUIIsPlaying { get; private set; }
 
     void Start()
@@ -20,16 +22,23 @@ public class SkillCheckManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
-    public void playSkillCheckUI()
+    public async Task playSkillCheckUI()
     {
         skillCheckUIIsPlaying = true;
         skillCheckUI.SetActive(true);
 
         dialogueManager.PauseDialogue();
+
+        while (skillCheckUIIsPlaying)
+        {
+            await Task.Yield();
+        }
     }
 
     public void endConditions(int condition)
     {
+        conditionResult = condition;
+
         // survived the clock
         if (condition == 1)
         {
@@ -44,6 +53,7 @@ public class SkillCheckManager : MonoBehaviour
             skillCheckUI.SetActive(false);
         }
 
+        // unpause dialogue
         dialogueManager.UnPauseDialogue();
     }
 }

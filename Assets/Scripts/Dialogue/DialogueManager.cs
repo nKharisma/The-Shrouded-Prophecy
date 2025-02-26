@@ -94,8 +94,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        currentStory.BindExternalFunction("playSkillCheckUI", () => {
-            skillCheck.playSkillCheckUI();
+        currentStory.BindExternalFunction("playSkillCheckUI", async () => {
+            await skillCheck.playSkillCheckUI();
+            currentStory.variablesState["result"] = skillCheck.conditionResult;
         });
 
         ContinueStory();
