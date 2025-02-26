@@ -8,28 +8,22 @@ public class HealthManager : MonoBehaviour
     [SerializeField] public Image healthBar;
     [SerializeField] public float healthAmount = 100f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         // FOR TESTING ONLY
         // UNTIL WE GET ENEMIES THAT CAN DO DAMAGE
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            TakeDamage(20);
-        }
+        // if (Input.GetKeyDown(KeyCode.Return))
+        // {
+           // TakeDamage(20);
+        // }
 
         // FOR TESTING ONLY
         // UNTIL WE GET ENEMIES THAT CAN DO DAMAGE
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Heal(5);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+            // Heal(5);
+        // }
     }
 
     public void TakeDamage(float damage)
