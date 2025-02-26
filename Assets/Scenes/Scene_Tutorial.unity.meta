@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Scene_Tutorial.unity.meta
 guid: ae3ec91a1d86344ed87156e011a91741
 DefaultImporter:
+========
+guid: dddf5d0e9409a4a5f9f235a22ea5a3f3
+PrefabImporter:
+>>>>>>>> 44189c278914655cfcc05d1cbc827230409b08cf:Assets/Prefabs/Background Canvas.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
