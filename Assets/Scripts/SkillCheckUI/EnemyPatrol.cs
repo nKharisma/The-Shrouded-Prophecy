@@ -7,13 +7,12 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] public Transform[] patrolPoints;
     [SerializeField] public int targetPoint;
     [SerializeField] public float speed;
-    // Start is called before the first frame update
+
     void Start()
     {
         targetPoint = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (transform.position == patrolPoints[targetPoint].position)
@@ -24,7 +23,13 @@ public class EnemyPatrol : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
     }
 
-    void nextTarget()
+    void OnDisable()
+    {
+        targetPoint = 0;
+        transform.position = patrolPoints[0].position;
+    }
+
+    private void nextTarget()
     {
         targetPoint++;
 
