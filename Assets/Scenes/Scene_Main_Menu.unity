@@ -4021,7 +4021,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90eeeb0ba6019e14d905ddf12e7c67ad, type: 3}
 --- !u!1001 &4102552698630501593
 PrefabInstance:
@@ -4040,7 +4039,7 @@ PrefabInstance:
     - target: {fileID: 3817151913036472448, guid: ec32665a0eab94c43aff4e7b3ac0bf92,
         type: 3}
       propertyPath: worldSceneIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8141277650461656089, guid: ec32665a0eab94c43aff4e7b3ac0bf92,
         type: 3}
