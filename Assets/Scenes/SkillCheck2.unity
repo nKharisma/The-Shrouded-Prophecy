@@ -257,7 +257,7 @@ MonoBehaviour:
   - {fileID: 801920771}
   - {fileID: 1877117086}
   targetPoint: 0
-  speed: 650
+  speed: 800
 --- !u!114 &66202316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   - {fileID: 1319648211}
   - {fileID: 1454587265}
   targetPoint: 0
-  speed: 650
+  speed: 800
 --- !u!114 &543252635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ PrefabInstance:
     - target: {fileID: 1127367259432291435, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
       propertyPath: speed
-      value: 650
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1127367259432291435, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   - {fileID: 1454587265}
   - {fileID: 801920771}
   targetPoint: 0
-  speed: 650
+  speed: 800
 --- !u!114 &1634961238
 MonoBehaviour:
   m_ObjectHideFlags: 0
