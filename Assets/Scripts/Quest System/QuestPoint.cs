@@ -28,7 +28,7 @@ public class QuestPoint : MonoBehaviour
     private void Awake() 
     {
         questID = questInfoForPoint.questID;
-        questIcon = GetComponentInChildren<QuestIcon>();
+        questIcon = GetComponentInChildren<QuestIcon>(true);
         
         inputActions = new PlayerControls();
         inputActions.Enable();
@@ -48,7 +48,7 @@ public class QuestPoint : MonoBehaviour
     }
     
     private void Update() {
-        if(inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame() && inputActions != null)
+        if(inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame() && inputActions != null && playerInRange)
         {
             NPCInteractionButton();
         }

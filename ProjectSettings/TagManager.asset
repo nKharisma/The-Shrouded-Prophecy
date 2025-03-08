@@ -7,6 +7,9 @@ TagManager:
   - PLAYER
   - Enemy
   - Captain
+  - TrainingDummy
+  - EventsManager
+  - CaptainSkillCheck
   layers:
   - Default
   - TransparentFX

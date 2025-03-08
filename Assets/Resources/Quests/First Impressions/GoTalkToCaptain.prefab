@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5156810402456955193}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.6, y: 17.598455, z: 48.78}
+  m_LocalRotation: {x: 0, y: -0.49166384, z: 0, w: 0.8707851}
+  m_LocalPosition: {x: 29.198, y: 17.598455, z: 51.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -58.9, z: 0}
 --- !u!114 &-7878695446401587832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433cf64419bdd7242a7099656458766d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questQuestionMark: {fileID: 1314314700, guid: 132358e9bf26b60458b731bf001e31db,
+    type: 3}
 --- !u!65 &9051063169083005588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64,5 +66,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9613459, y: 1, z: 1.0998844}
+  m_Center: {x: -0.1893003, y: 0, z: -0.18680923}

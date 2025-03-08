@@ -3,100 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class TalkToCaptainQuestStep : QuestStep
+public class DuelWithCaptain : QuestStep
 {
     private Quest quest;
-    private bool questStarted;
-    private bool hasTalkedToCaptain;
-    private bool isPlayerInRange;
     private GameObject captainNPC;
+    private BoxCollider finishCollider;
     private GameObject visualIndicatorObject;
+    private GameObject finishQuestIndicator;
     private SpriteRenderer visualIndicator;
-    private string dialogueKnotName = "CaptainDialogue";
+    private bool isPlayerInRange;
+    private string dialogueKnotName = "DuelWithCaptain";
     private PlayerControls inputActions;
+    private bool hasCompletedDuel;
     
-    [Header("Sprites")]
-    [SerializeField] private Sprite questQuestionMark;
-    //[SerializeField] private Sprite questExclamationMark;
+    //[Header("Sprites")]
+    
+    [Header("Skill Check")]
+    private SkillCheckSetup skillCheckSetup;
     
     private void Awake() {
-        hasTalkedToCaptain = false;
         isPlayerInRange = false;
-        questStarted = false;
+        hasCompletedDuel = false;
         inputActions = new PlayerControls();
         inputActions.Enable();
     }
-
-    private void Start()
-    {   
+    
+    private void Start() {
         captainNPC = GameObject.FindWithTag("Captain");
         if(captainNPC == null)
         {
             Debug.Log("Captain NPC not found");
             return;
         }
-        
+        finishCollider = captainNPC.GetComponent<BoxCollider>();
         visualIndicatorObject = captainNPC.transform.GetChild(0).gameObject;
         visualIndicator = visualIndicatorObject.GetComponent<SpriteRenderer>();
+        finishQuestIndicator = captainNPC.transform.GetChild(2).gameObject;
         quest = QuestManager.instance.GetQuestById(base.questID);
-    
+        
         GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+        
+        skillCheckSetup = GameObject.FindWithTag("EventsManager").GetComponent<SkillCheckSetup>();
+        if (skillCheckSetup != null)
+        {
+            skillCheckSetup.SetupSkillCheck();
+        }
+        else
+        {
+            Debug.LogError("SkillCheckSetup is not found in the scene.");
+        }
     }
     
-    private void Update()
-    {
-        if(isPlayerInRange && !hasTalkedToCaptain)
+    private void Update() {
+        if(isPlayerInRange)
         {
             if(inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
             {
                 DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
             }
         }
-        
-        //Debug.Log(quest.currentStepIndex);
-        //Debug.Log(base.currentStepIndex);
-        
-        //Debug.Log(quest.currentStepIndex == base.currentStepIndex);
-        if (quest.questState == QuestState.In_Progress && quest.currentStepIndex == base.currentStepIndex && !questStarted)
-        {
-            questStarted = true;
-            visualIndicator.enabled = true;
-            //Debug.Log("Enabling visual indicator");
-        }
     }
-
-    private void OnDestroy()
-    {
+    
+    private void OnDestroy() {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
     }
     
-    private void OnDialogueStart()
+    private void OnDialogueStart() 
     {
-        if(hasTalkedToCaptain)
+        if(!isPlayerInRange)
         {
             return;
         }
-        
+    
         if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
         {
-            hasTalkedToCaptain = true;
-            visualIndicator.enabled = false;
-            UpdateState();
+            visualIndicatorObject.SetActive(false);
         }
     }
     
-    private void OnDialogueComplete()
+    private void OnDialogueComplete() 
     {
-        if(hasTalkedToCaptain)
-        {
-            visualIndicator.enabled = true;
-            visualIndicator.sprite = questQuestionMark;
-            visualIndicator.color = Color.gray;
-            CompleteStep();
-        }
+        hasCompletedDuel = true;
+        finishQuestIndicator.SetActive(true);
+        finishCollider.enabled = true;
+        CompleteStep();
     }
+    
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
@@ -111,11 +105,5 @@ public class TalkToCaptainQuestStep : QuestStep
         {
             isPlayerInRange = false;
         }
-    }
-    
-    private void UpdateState()
-    {
-        string state = hasTalkedToCaptain ? "true" : "false";
-        ChangeState("hasTalkedToCaptain", state);
     }
 }

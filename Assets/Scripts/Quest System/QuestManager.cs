@@ -51,7 +51,7 @@ public class QuestManager : MonoBehaviour
         }
     }
     
-    private Quest GetQuestById(string id)
+    public Quest GetQuestById(string id)
     {
         Debug.Log("GetQuestByID: " + id);
         Quest quest = questMap[id];
@@ -113,6 +113,7 @@ public class QuestManager : MonoBehaviour
         quest.InstantiateCurrentStep(this.transform);
         ChangeQuestState(quest.questInfoSO.questID, QuestState.In_Progress);
         Debug.Log("Starting quest: " + id);
+        //GameEventsManager.instance.questEvents.InvokeStartQuest(id);
     }
     
     private void AdvanceQuest(string id)

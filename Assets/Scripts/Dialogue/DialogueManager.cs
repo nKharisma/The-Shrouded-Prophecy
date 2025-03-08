@@ -36,8 +36,8 @@ public class DialogueManager : MonoBehaviour
     private SkillCheckManager skillCheck;
     private InkExternalFunctions inkExternalFunctions;
 
-    private Vector3 noChoicePosition = new Vector3(0f, 25f, 0f);
-    private Vector3 choicePosition = new Vector3(0f, 82f, 0f);
+    private Vector3 noChoicePosition = new Vector3(0f, 10f, 0f);
+    private Vector3 choicePosition = new Vector3(0f, 25f, 0f);
     private RectTransform panelRect;
 
     private Vector3 downPosition = new Vector3(0f, 5f, 0f);
@@ -161,6 +161,11 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Knot name is empty");
         }
         
+        currentStory.BindExternalFunction("playSkillCheckUI", async () => {
+            await skillCheck.playSkillCheckUI();
+            currentStory.variablesState["result"] = skillCheck.conditionResult;
+        });
+        
         ContinueOrExitStory();
     }
     
@@ -172,7 +177,7 @@ public class DialogueManager : MonoBehaviour
         isQuestDialogue = false;
         
         GameEventsManager.instance.dialogueEvents.DialogueComplete();
-        
+        currentStory.UnbindExternalFunction("playSkillCheckUI");
         currentStory.ResetState();
     }
 
@@ -250,35 +255,43 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void DisplayChoices()
+{
+    List<Choice> currentChoices = currentStory.currentChoices;
+
+    if (currentChoices.Count > choices.Length)
     {
-        List<Choice> currentChoices = currentStory.currentChoices;
+        Debug.Log("More choices were given than UI can support");
+    } 
 
-        if (currentChoices.Count > choices.Length)
-        {
-            Debug.Log("More choices were given than UI can support");
-        } 
-
-        int index = 0;
-        foreach (Choice choice in currentChoices)
-        {
-            iconRect.transform.rotation = Quaternion.Euler(0, 0, 0);
-            panelRect.anchoredPosition = choicePosition;
-            iconRect.anchoredPosition = downPosition;
-            choices[index].gameObject.SetActive(true);
-            choicesText[index].text = choice.text;
-            index++;
-        }
-
-        for (int i = index; i < choices.Length; i++)
-        {
-            choices[i].gameObject.SetActive(false);
-            iconRect.anchoredPosition = sidePosition;
-            panelRect.anchoredPosition = noChoicePosition;
-            iconRect.transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
-
-        StartCoroutine(SelectFirstChoice());
+    int index = 0;
+    foreach (Choice choice in currentChoices)
+    {
+        choices[index].gameObject.SetActive(true);
+        choicesText[index].text = choice.text;
+        index++;
     }
+
+    for (int i = index; i < choices.Length; i++)
+    {
+        choices[i].gameObject.SetActive(false);
+    }
+
+    // Adjust the panel and icon positions based on the number of choices
+    if (currentChoices.Count > 0)
+    {
+        panelRect.anchoredPosition = choicePosition;
+        iconRect.anchoredPosition = downPosition;
+        iconRect.transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+    else
+    {
+        panelRect.anchoredPosition = noChoicePosition;
+        iconRect.anchoredPosition = sidePosition;
+        iconRect.transform.rotation = Quaternion.Euler(0, 0, 90);
+    }
+
+    StartCoroutine(SelectFirstChoice());
+}
 
     private IEnumerator SelectFirstChoice()
     {

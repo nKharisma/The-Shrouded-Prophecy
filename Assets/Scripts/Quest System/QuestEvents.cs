@@ -37,13 +37,13 @@ public class QuestEvents
             onQuestStateChange(quest);
         }
     }
-    /*
+    
     public event Action<string, int, QuestStepState> onQuestStepStateChange;
-    public void QuestStepChange(string questID, int stepIndex, QuestStepState questStepState)
+    public void QuestStepStateChange(string questID, int stepIndex, QuestStepState questStepState)
     {
-        if(onQuestStepChange != null)
+        if(onQuestStepStateChange != null)
         {
-            onQuestStepChange(id, stepIndex, questStepState);
+            onQuestStepStateChange(questID, stepIndex, questStepState);
         }
-    }*/
+    }
 }
