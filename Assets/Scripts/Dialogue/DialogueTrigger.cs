@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class DialogueTrigger : MonoBehaviour
     private bool playerInRange;
     private PlayerControls inputActions;
 
+    public UnityEvent OnDialogueComplete;
     private void Awake()
     {
         playerInRange = false;
+        
         visualCue.SetActive(false);
 
         inputActions = new PlayerControls();
@@ -24,14 +27,20 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        IfDialogueTrigger();
+    }
+    
+    private void IfDialogueTrigger()
+    {
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
 
-             if (inputActions != null && inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
-             {
-                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-             }
+            if (inputActions != null && inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
+            {
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                GameEventsManager.instance.dialogueEvents.onDialogueComplete += GameEventsManager.instance.dialogueEvents.DialogueComplete;
+            }
         }
         else
         {

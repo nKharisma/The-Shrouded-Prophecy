@@ -61,8 +61,8 @@ public class CutoutObject : MonoBehaviour
                 foreach (Material material in renderer.materials)
                 {
                     material.SetVector("_CutoutPos", cutoutPos);
-                    material.SetFloat("_CutoutSize", 0.1f);
-                    material.SetFloat("_FalloffSize", 0.05f);
+                    material.SetFloat("_CutoutSize", 0.12f);
+                    material.SetFloat("_FalloffSize", 0.02f);
                 }
             }
         }

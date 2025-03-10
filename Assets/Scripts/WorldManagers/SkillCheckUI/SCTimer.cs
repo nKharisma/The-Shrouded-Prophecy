@@ -9,16 +9,23 @@ public class SCTimer : MonoBehaviour
 {
     [SerializeField] public float startWaitSeconds;
     [SerializeField] TMP_Text text;
-
-    private SkillCheckManager skillCheck;
     private HealthManager healthManager;
 
     private float waitSeconds;
     private int waitSecondsInt;
     
+    private SkillCheckManager skillCheck;
+    
     void Start()
     {
-        skillCheck = FindObjectOfType<SkillCheckManager>();
+        skillCheck = SkillCheckManager.instance;
+        
+        if(skillCheck == null)
+        {
+            Debug.LogError("SkillCheckManager is not set.");
+            return;
+        }
+        
         healthManager = FindObjectOfType<HealthManager>();
         resetTimer();
     }
