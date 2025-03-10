@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //SceneManagement is a library that allows you to do some functionality with scenes such as loading a new scene
 using System.IO;
+using UnityEngine.UI;
+using TMPro;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
@@ -24,6 +26,10 @@ public class WorldSaveGameManager : MonoBehaviour
     
     [Header("Save Slots")]
     public CharacterSaveData saveSlot01, saveSlot02, saveSlot03, saveSlot04, saveSlot05, saveSlot06; //These are references to the save slots
+
+    // for loading screen
+    public GameObject LoadingScreen;
+    public TextMeshProUGUI ProgressText;
     
     
     private void Awake()
@@ -252,9 +258,16 @@ public class WorldSaveGameManager : MonoBehaviour
     public IEnumerator LoadWorldScene()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); //Load the world scene asynchronously
+
+        LoadingScreen.SetActive(true); //loading screen
+        
         
         while (!asyncLoad.isDone) //while the scene is not done loading
         {
+            //show percentage of loading
+            float progressValue = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            int percentage = Mathf.RoundToInt(progressValue * 100);
+            ProgressText.text = percentage + "%";
             yield return null; //return null
         }
         
