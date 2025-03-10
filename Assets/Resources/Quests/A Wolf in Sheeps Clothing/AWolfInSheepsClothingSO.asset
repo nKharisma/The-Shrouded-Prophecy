@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3a531d4f8b7e84f86b2dfe235f5f5c, type: 3}
+  m_Name: AWolfInSheepsClothingSO
+  m_EditorClassIdentifier: 
+  <questID>k__BackingField: AWolfInSheepsClothingSO
+  displayName: A Wolf in Sheeps Clothing
+  requiredTrustLevel: 5
+  requiredPreviousQuests:
+  - {fileID: 11400000, guid: b45c6a6996494d5488cb96c9a029ce29, type: 2}
+  questStepsPrefabs: []
+  rewardTrustLevel: 0

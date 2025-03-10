@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 5156810402456955193, guid: f0d3843040aaaf943b7d12f4188b1b75, type: 3}
   - {fileID: 7115809617199841182, guid: 099c61815be3d66418de49c4b01285f8, type: 3}
   - {fileID: 4220780721104741992, guid: 580482dc9b7898944b18274849883244, type: 3}
-  rewardTrustLevel: 50
+  rewardTrustLevel: 5

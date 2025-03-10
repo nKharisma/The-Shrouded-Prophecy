@@ -58,7 +58,7 @@ public class TalkToCaptainQuestStep : QuestStep
         //Debug.Log(base.currentStepIndex);
         
         //Debug.Log(quest.currentStepIndex == base.currentStepIndex);
-        if (quest.questState == QuestState.In_Progress && quest.currentStepIndex == base.currentStepIndex && !questStarted)
+        if (quest.questState == QuestState.In_Progress && quest.currentQuestStepIndex == base.currentStepIndex && !questStarted)
         {
             questStarted = true;
             visualIndicator.enabled = true;
@@ -83,7 +83,7 @@ public class TalkToCaptainQuestStep : QuestStep
         {
             hasTalkedToCaptain = true;
             visualIndicator.enabled = false;
-            UpdateState();
+            UpdateState(); //might have to change this later?
         }
     }
     
@@ -116,6 +116,19 @@ public class TalkToCaptainQuestStep : QuestStep
     private void UpdateState()
     {
         string state = hasTalkedToCaptain ? "true" : "false";
-        ChangeState("hasTalkedToCaptain", state);
+        string status = state;
+        ChangeState(state, status);
+    }
+    
+    protected override void SetQuestStepState(string state)
+    {
+        if(state == "true")
+        {
+            hasTalkedToCaptain = true;
+        }else {
+            hasTalkedToCaptain = false;
+        }
+        
+        UpdateState();
     }
 }

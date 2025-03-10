@@ -106,4 +106,23 @@ public class DuelWithCaptain : QuestStep
             isPlayerInRange = false;
         }
     }
+    
+    private void UpdateState()
+    {
+        string state = hasCompletedDuel ? "true" : "false";
+        string status = state;
+        ChangeState(state, status);
+    }
+    
+    protected override void SetQuestStepState(string questStepState)
+    {
+        if(questStepState == "true")
+        {
+            hasCompletedDuel = true;
+        }else {
+            hasCompletedDuel = false;
+        }
+        
+        UpdateState();
+    }
 }

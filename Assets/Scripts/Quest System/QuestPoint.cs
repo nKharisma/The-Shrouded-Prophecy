@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class QuestPoint : MonoBehaviour
 {
+
     [Header("Dialogue")]
     [SerializeField] private string dialogueKnotName;
 
@@ -35,6 +36,10 @@ public class QuestPoint : MonoBehaviour
         
         Debug.Log("Quest Point Awake: " + questID);
         
+    }
+    
+    private void Start() {
+        ManageQuestPointState();
     }
     
     private void OnEnable()    
@@ -83,6 +88,7 @@ public class QuestPoint : MonoBehaviour
             currentQuestState = quest.questState;
             Debug.Log("Quest State Changed: " + quest.questState + " for Quest: " + questID);
             questIcon.SetState(currentQuestState, startPoint, completePoint);
+            ManageQuestPointState();
         }
     }
     
@@ -100,5 +106,19 @@ public class QuestPoint : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+    
+    private void ManageQuestPointState()
+    {
+        if(currentQuestState.Equals(QuestState.Can_Start) && startPoint)
+        {
+            SetQuestPointActive(true);
+        }
+    }
+    
+    private void SetQuestPointActive(bool isActive)
+    {
+        this.gameObject.GetComponent<BoxCollider>().enabled = isActive;
+        questIcon.gameObject.SetActive(isActive);
     }
 }

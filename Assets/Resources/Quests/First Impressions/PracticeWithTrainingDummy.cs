@@ -69,7 +69,7 @@ public class PracticeWithTrainingDummy : QuestStep
             }
         }
         
-        if(quest.currentStepIndex == base.currentStepIndex)
+        if(quest.currentQuestStepIndex == base.currentStepIndex)
         {
             visualIndicatorObject.SetActive(true);
         }
@@ -115,6 +115,23 @@ public class PracticeWithTrainingDummy : QuestStep
         if (collider.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = false;
+        }
+    }
+    
+    private void UpdateState()
+    {
+        string state = hasCompletedTraining ? "true" : "false";
+        string status = state;
+        ChangeState(state, status);
+    }
+    
+    protected override void SetQuestStepState(string state)
+    {
+        if(state == "true")
+        {
+            hasCompletedTraining = true;
+        }else {
+            hasCompletedTraining = false;
         }
     }
 }

@@ -29,6 +29,8 @@ public class SaveGameFileWriter
             
             string saveData = JsonUtility.ToJson(characterSaveData, true); //converts the save data to a json string
             
+            //Debug.Log("Save Data: " + saveData);
+            
             using (FileStream stream = new FileStream(savePath, FileMode.Create)) //creates the file for writing
             {
                 using (StreamWriter writer = new StreamWriter(stream)) //creates a stream writer to write to the file
