@@ -10,6 +10,8 @@ TagManager:
   - TrainingDummy
   - EventsManager
   - CaptainSkillCheck
+  - TDSkillCheck
+  - SirVeney
   layers:
   - Default
   - TransparentFX

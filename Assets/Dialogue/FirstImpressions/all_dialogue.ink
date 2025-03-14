@@ -4,11 +4,12 @@ EXTERNAL CompleteQuest(questID)
 EXTERNAL playSkillCheckUI()
 VAR result = 0
 VAR passedTraining = false
-VAR duelPassed = false
+VAR captainDuelPassed = false
+VAR sirDuelPassed = false
 
 === FirstImpressionsQuestStart ===
 "So, they finally think you're ready, huh?"
-"If you're serious about this mission, you'll need to prove it first. The Captain is waiting for you."
+"If you're serious about this mission, you'll need to prove it first. The Captain is waiting for you inside by the tents."
 * [Where is the Captain?] -> where_captain
 
 = where_captain
@@ -68,12 +69,53 @@ What would you like to do?
     -> TrainingDummyDialogue  
 }
 
+=== DuelWithSir ===
+<i>Sir Veyne stands casually, his arms crossed as he sizes you up.</i>
+"Everyone gets pass the training dummy, but not everyone gets past me."
+<i>He pushes off his sword and rests it on his shoulder, eyes glinting with amusement.</i>
+"I’ll make this simple. You’re not getting to the Captain without proving you’re not a waste of my time."
+What do you say?
+
+ + [I'm ready. Let's do this.]
+"Confidence. I like that. Let’s see if you’ve got skill to back it up."
+~ playSkillCheckUI()
+-> sir_duel_result
+
++ [Do we really have to fight?]
+"Oh, come on. Don’t be dull. This is a rite of passage, kid. If you’re scared, I’ll try not to hit you too hard."
+    ~ playSkillCheckUI()
+    -> sir_duel_result
+
++ [You don’t look that tough.]
+    "Oho? A fighter with some bite. I love breaking that confidence."
+    He rolls his shoulders, stepping into position.
+    "Don’t disappoint me now."
+    ~ playSkillCheckUI()
+    -> sir_duel_result
+
+= sir_duel_result
+<i>Sir Veyne steps back, pondering your performance.</i>
+
+{result == 1:
+    ~  sirDuelPassed = true
+"Hah! You’ve got some moves. Maybe you’re not a lost cause after all."
+<i>He grins, rubbing his knuckles absentmindedly before cracking his neck one last time.</i>
+"Alright, I’ll let you go make a fool of yourself in front of the Captain. Try not to die, yeah?"
+-> DONE
+
+- else:
+"Oof. That was embarrassing. Try again, unless you’d rather quit now."
+<i>He crosses his arms again, shaking his head with mock disappointment.</i>
+"Come on, recruit, don’t make me feel bad for hitting you. Again."
+-> DuelWithSir
+}
+
 === DuelWithCaptain ===  
 <i>The Captain stands firm, his helmet concealing any emotion.</i>  
 "You've made it this far, but that means nothing. Show <b>me</b> you're ready."
 
 Are you prepared?  
-+ [Yes, I'm ready. I can handle this.]  
++ [Yes, I'm ready.]  
     <i>The Captain tilts his head slightly, clearly sizing you up.</i>  
     "Then let's begin."  
     ~ playSkillCheckUI()  
@@ -87,7 +129,7 @@ Are you prepared?
 <i>The Captain studies you, gauging your performance.</i>
 
 {result == 1:  
-    ~ duelPassed = true  
+    ~ captainDuelPassed = true  
     <b>The Captain steps back, lowering his weapon back down to his side.</b>  
     "Not bad. You might actually survive out there. Don't get too cocky, though."  
     -> DONE  
@@ -100,6 +142,7 @@ Are you prepared?
 === duel_passed ===  
     "Alright. I think you've proven yourself... for now. Time for your first real mission."  
     ~ CompleteQuest("FirstImpressionsSO")  
-    "Don't get comfortable. This was just a warm-up."  
+    "Don't get comfortable, this is nothing like the real thing."  
+<i>This is the end of the tutorial, you are free to explore the world and interact with other NPCs, we know that it might not be a lot of content but we hope you enjoyed the demo and cannot wait to show you the final project!</i>
 -> DONE
 

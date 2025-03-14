@@ -12,8 +12,8 @@ public class PracticeWithTrainingDummy : QuestStep
     private bool isPlayerInRange;
     private string dialogueKnotName = "TrainingDummyDialogue";
     private PlayerControls inputActions;
-    private GameObject captainNPC;
-    private SpriteRenderer captainNPCMarker;
+    private GameObject sirVeney;
+    private SpriteRenderer sirVeneyNPCMarker;
     private bool hasCompletedTraining;
 
     [Header("Quest Sprite")]
@@ -40,8 +40,8 @@ public class PracticeWithTrainingDummy : QuestStep
         }
         visualIndicatorObject = trainingDummy.transform.GetChild(0).gameObject;   
         
-        captainNPC = GameObject.FindWithTag("Captain");
-        captainNPCMarker = captainNPC.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        sirVeney = GameObject.FindWithTag("SirVeney");
+        sirVeneyNPCMarker = sirVeney.transform.GetChild(0).GetComponent<SpriteRenderer>();
         quest = QuestManager.instance.GetQuestById(base.questID);
         
         GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
@@ -97,7 +97,7 @@ public class PracticeWithTrainingDummy : QuestStep
     private void OnDialogueComplete()
     {
         hasCompletedTraining = true;
-        captainNPCMarker.color = Color.yellow;
+        sirVeney.transform.GetChild(0).gameObject.SetActive(true);
         visualIndicatorObject.SetActive(false);
         CompleteStep();
     }
