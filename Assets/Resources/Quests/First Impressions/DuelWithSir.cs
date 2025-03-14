@@ -2,60 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-public class DuelWithCaptain : QuestStep
+public class DuelWithSir : QuestStep
 {
+    
     private Quest quest;
-    private GameObject captainNPC;
-    private BoxCollider finishCollider;
+    private GameObject sirVeney;
     private GameObject visualIndicatorObject;
-    private GameObject finishQuestIndicator;
     private SpriteRenderer visualIndicator;
     private bool isPlayerInRange;
-    private string dialogueKnotName = "DuelWithCaptain";
+    private string dialogueKnotName = "DuelWithSir";
     private PlayerControls inputActions;
-    private bool hasCompletedDuel;
-    
-    //[Header("Sprites")]
-    
+    private GameObject captainNPC;
+    private SpriteRenderer captainNPCMarker;
+    private bool hasCompletedDuelWithSir;
+
+    //[Header("Quest Sprite")]
+    //[SerializeField] private Sprite questQuestionMark; //might not be needed 
+
     [Header("Skill Check")]
-    [SerializeField] private SkillCheckSetup skillCheckSetup;
-    
-    private void Awake() {
+    [SerializeField] private SkillCheckSetup skillCheckSetup; // Reference to the SkillCheckSetup script
+
+    private void Awake() 
+    {
         isPlayerInRange = false;
-        hasCompletedDuel = false;
+        hasCompletedDuelWithSir = false;
         inputActions = new PlayerControls();
         inputActions.Enable();
     }
-    
-    private void Start() {
-        captainNPC = GameObject.FindWithTag("Captain");
-        if(captainNPC == null)
+
+    private void Start() 
+    {
+        sirVeney = GameObject.FindWithTag("SirVeney");
+        if(sirVeney == null)
         {
-            Debug.Log("Captain NPC not found");
+            Debug.Log("Sir Veney not found");
             return;
         }
-        finishCollider = captainNPC.GetComponent<BoxCollider>();
-        visualIndicatorObject = captainNPC.transform.GetChild(0).gameObject;
-        visualIndicator = visualIndicatorObject.GetComponent<SpriteRenderer>();
-        finishQuestIndicator = captainNPC.transform.GetChild(2).gameObject;
+        visualIndicatorObject = sirVeney.transform.GetChild(0).gameObject;   
+        
+        captainNPC = GameObject.FindWithTag("Captain");
+        captainNPCMarker = captainNPC.transform.GetChild(0).GetComponent<SpriteRenderer>();
         quest = QuestManager.instance.GetQuestById(base.questID);
         
         GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
-        
+
         skillCheckSetup = GameObject.FindWithTag("EventsManager").GetComponent<SkillCheckSetup>();
+        // Setup the skill check UI instance based on the quest step index
         if (skillCheckSetup != null)
         {
             skillCheckSetup.SetupSkillCheck();
         }
         else
         {
-            Debug.LogError("SkillCheckSetup is not found in the scene.");
+            Debug.LogError("SkillCheckSetup is not assigned.");
         }
     }
     
-    private void Update() {
+    private void Update()
+    {
         if(isPlayerInRange)
         {
             if(inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
@@ -63,14 +68,20 @@ public class DuelWithCaptain : QuestStep
                 DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
             }
         }
+        
+        if(quest.currentQuestStepIndex == base.currentStepIndex)
+        {
+            visualIndicatorObject.SetActive(true);
+        }
     }
-    
-    private void OnDestroy() {
+
+    private void OnDestroy()
+    {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
     }
     
-    private void OnDialogueStart() 
+    private void OnDialogueStart()
     {
         if(!isPlayerInRange)
         {
@@ -83,11 +94,11 @@ public class DuelWithCaptain : QuestStep
         }
     }
     
-    private void OnDialogueComplete() 
+    private void OnDialogueComplete()
     {
-        hasCompletedDuel = true;
-        finishQuestIndicator.SetActive(true);
-        finishCollider.enabled = true;
+        hasCompletedDuelWithSir = true;
+        captainNPCMarker.color = Color.yellow;
+        visualIndicatorObject.SetActive(false);
         CompleteStep();
     }
     
@@ -109,20 +120,18 @@ public class DuelWithCaptain : QuestStep
     
     private void UpdateState()
     {
-        string state = hasCompletedDuel ? "true" : "false";
+        string state = hasCompletedDuelWithSir ? "true" : "false";
         string status = state;
         ChangeState(state, status);
     }
     
-    protected override void SetQuestStepState(string questStepState)
+    protected override void SetQuestStepState(string state)
     {
-        if(questStepState == "true")
+        if(state == "true")
         {
-            hasCompletedDuel = true;
+            hasCompletedDuelWithSir = true;
         }else {
-            hasCompletedDuel = false;
+            hasCompletedDuelWithSir = false;
         }
-        
-        UpdateState();
     }
 }

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7115809617199841182}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.495, y: 17.69, z: 50.514}
+  m_LocalPosition: {x: 21.33, y: 17.69, z: 50.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,3 +68,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questQuestionMark: {fileID: 1314314700, guid: 132358e9bf26b60458b731bf001e31db,
     type: 3}
+  skillCheckSetup: {fileID: 0}
