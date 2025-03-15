@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextAsset inkJson;
     
     private Story currentStory;
+    private Story questStory;
 
     public bool dialogueIsPlaying { get; private set; }
     public bool isPaused { get; private set; }
@@ -53,9 +54,9 @@ public class DialogueManager : MonoBehaviour
 
         instance = this;
         
-        currentStory = new Story(inkJson.text);
+        questStory = new Story(inkJson.text);
         inkExternalFunctions = new InkExternalFunctions();
-        inkExternalFunctions.Bind(currentStory);
+        inkExternalFunctions.Bind(questStory);
 
         panelRect = dialoguePanel.GetComponent<RectTransform>();
         iconRect = continueIcon.GetComponent<RectTransform>();
@@ -66,7 +67,7 @@ public class DialogueManager : MonoBehaviour
     
     private void OnDestroy() 
     {
-        inkExternalFunctions.Unbind(currentStory);
+        inkExternalFunctions.Unbind(questStory);
     }
 
     public static DialogueManager GetInstance()
@@ -131,6 +132,8 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
+        
+        Debug.Log("Current story is: " + currentStory);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
@@ -144,6 +147,7 @@ public class DialogueManager : MonoBehaviour
     
     public void EnterDialogue(string knotName)
     {
+        
         if(dialogueIsPlaying)
         {
             return;
@@ -154,16 +158,16 @@ public class DialogueManager : MonoBehaviour
                 
         if(!knotName.Equals(""))
         {
-            currentStory.ChoosePathString(knotName);
+            questStory.ChoosePathString(knotName);
             currentKnotName = knotName;
             GameEventsManager.instance.dialogueEvents.DialogueStart();
         }else{
             Debug.Log("Knot name is empty");
         }
         
-        currentStory.BindExternalFunction("playSkillCheckUI", async () => {
+        questStory.BindExternalFunction("playSkillCheckUI", async () => {
             await skillCheck.playSkillCheckUI();
-            currentStory.variablesState["result"] = skillCheck.conditionResult;
+            questStory.variablesState["result"] = skillCheck.conditionResult;
         });
         
         ContinueOrExitStory();
@@ -177,8 +181,8 @@ public class DialogueManager : MonoBehaviour
         isQuestDialogue = false;
         
         GameEventsManager.instance.dialogueEvents.DialogueComplete();
-        currentStory.UnbindExternalFunction("playSkillCheckUI");
-        currentStory.ResetState();
+        questStory.UnbindExternalFunction("playSkillCheckUI");
+        questStory.ResetState();
     }
 
     public void PauseDialogue()
@@ -198,6 +202,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
 
         currentStory.UnbindExternalFunction("playSkillCheckUI");
+        currentStory.ResetState();
     }
     
     private void DialogueStart()
@@ -231,32 +236,32 @@ public class DialogueManager : MonoBehaviour
     
     private void ContinueOrExitStory()
     {
-        if (currentStory.canContinue)
+        if (questStory.canContinue)
         {
-            string dialogueLine = currentStory.Continue();
+            string dialogueLine = questStory.Continue();
             GameEventsManager.instance.dialogueEvents.DisplayDialogue(dialogueLine);
             DisplayChoices();
             
-            while(IsDialogueEmpty(dialogueLine) && currentStory.canContinue)
+            while(IsDialogueEmpty(dialogueLine) && questStory.canContinue)
             {
-                dialogueLine = currentStory.Continue();
+                dialogueLine = questStory.Continue();
             }
             
-            if(IsDialogueEmpty(dialogueLine) && !currentStory.canContinue)
+            if(IsDialogueEmpty(dialogueLine) && !questStory.canContinue)
             {
                 ExitDialogue();
             }else {
                 GameEventsManager.instance.dialogueEvents.DisplayDialogue(dialogueLine);
             }
-        }else if(currentStory.currentChoices.Count == 0)
+        }else if(questStory.currentChoices.Count == 0)
         {
             ExitDialogue();
         }
     }
 
     private void DisplayChoices()
-{
-    List<Choice> currentChoices = currentStory.currentChoices;
+    {
+    List<Choice> currentChoices = isQuestDialogue ? questStory.currentChoices : currentStory.currentChoices;
 
     if (currentChoices.Count > choices.Length)
     {
@@ -302,7 +307,8 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
+        Story story = isQuestDialogue ? questStory : currentStory;
+        story.ChooseChoiceIndex(choiceIndex);
     }
     
     private bool IsDialogueEmpty(string dialogueLine)

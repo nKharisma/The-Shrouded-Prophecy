@@ -110,7 +110,10 @@ public class QuestPoint : MonoBehaviour
     
     private void ManageQuestPointState()
     {
-        if(currentQuestState.Equals(QuestState.Can_Start) && startPoint)
+        if(currentQuestState.Equals(QuestState.Can_Complete) && completePoint)
+        {
+            SetQuestPointActive(true);
+        }else if(currentQuestState.Equals(QuestState.Can_Start) && startPoint)
         {
             SetQuestPointActive(true);
         }

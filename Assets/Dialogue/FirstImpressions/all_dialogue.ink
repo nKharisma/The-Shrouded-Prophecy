@@ -123,7 +123,7 @@ Are you prepared?
 + [Wait, I need a moment.]  
     <b>The Captain exhales sharply, his patience thinning.</b>  
     "Nerves? Fine. Just don't keep me waiting."  
-    -> DONE
+    -> DuelWithCaptain
 
 = duel_result  
 <i>The Captain studies you, gauging your performance.</i>

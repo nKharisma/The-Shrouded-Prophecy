@@ -79,6 +79,7 @@ public class DuelWithSir : QuestStep
     {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
     }
     
     private void OnDialogueStart()

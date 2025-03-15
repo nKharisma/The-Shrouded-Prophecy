@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider))]
 public class TalkToCaptainQuestStep : QuestStep
@@ -70,6 +71,7 @@ public class TalkToCaptainQuestStep : QuestStep
     {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
     }
     
     private void OnDialogueStart()

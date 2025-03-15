@@ -39,7 +39,7 @@ public class DialogueTrigger : MonoBehaviour
             if (inputActions != null && inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-                GameEventsManager.instance.dialogueEvents.onDialogueComplete += GameEventsManager.instance.dialogueEvents.DialogueComplete;
+                //GameEventsManager.instance.dialogueEvents.onDialogueComplete += GameEventsManager.instance.dialogueEvents.DialogueComplete;
             }
         }
         else
