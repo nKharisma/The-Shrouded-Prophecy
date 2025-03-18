@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
+    public GameObject scPlayer;
+    public Image[] powerUpImages;
+    public Outline[] powerUpOutlines;
+    public HealthManager healthManager;
+
+    private int currentPowerUp = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +31,10 @@ public class PowerUpManager : MonoBehaviour
 
     void UpdatePUSelection()
     {
-
+        for (int i = 0; i < powerUpOutlines.Length; i++)
+        {
+            powerUpOutlines[i].enabled = (i == currentPowerUp);
+        }
     }
 
     void ActivatePU(int index)
@@ -31,7 +42,7 @@ public class PowerUpManager : MonoBehaviour
         switch (index)
         {
             case 0:
-
+                healthManager.Heal(25);
                 break;
             case 1:
 

@@ -353,6 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a45a2f01a80d4dc6a833bdb96f4643b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scPlayer: {fileID: 767024478}
+  powerUpImages: []
+  powerUpOutlines: []
+  healthManager: {fileID: 389419336}
 --- !u!1 &456498398
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1002,12 @@ RectTransform:
 --- !u!4 &767024477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1811162079567942090, guid: 2e9ddfb237db1495589228d68eee30b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 767024474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &767024478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2902308306443295384, guid: 2e9ddfb237db1495589228d68eee30b7,
     type: 3}
   m_PrefabInstance: {fileID: 767024474}
   m_PrefabAsset: {fileID: 0}

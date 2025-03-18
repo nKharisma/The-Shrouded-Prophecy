@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SCBattlePlayerControls : MonoBehaviour
 {
-    [SerializeField] private float movSpeed;
+    [SerializeField] public float movSpeed;
     [SerializeField] private RectTransform canvas;
     [SerializeField] private RectTransform skillCheckSquare;
     
