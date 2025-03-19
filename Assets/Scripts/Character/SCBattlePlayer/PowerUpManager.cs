@@ -9,6 +9,7 @@ public class PowerUpManager : MonoBehaviour
     public Image[] powerUpImages;
     public Outline[] powerUpOutlines;
     public HealthManager healthManager;
+    private PlayerControls inputActions;
 
     private int currentPowerUp = 0;
 
@@ -21,12 +22,26 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(inputActions.PlayerMovement.LeftPowerUp.WasPressedThisFrame())
+        {
+            ChangePU(-1);
+        }
+        else if(inputActions.PlayerMovement.RightPowerUp.WasPressedThisFrame())
+        {
+            ChangePU(1);
+        }
+        else if(inputActions.PlayerMovement.SelectPowerUp.WasPressedThisFrame())
+        {
+            ActivatePU(currentPowerUp);
+        }
     }
 
-    void ChangerPU(int direction)
+    void ChangePU(int direction)
     {
+        powerUpOutlines[currentPowerUp].enabled = false;
 
+        currentPowerUp = (currentPowerUp + direction + powerUpImages.Length) % powerUpImages.Length;
+        powerUpOutlines[currentPowerUp].enabled = true;
     }
 
     void UpdatePUSelection()
@@ -45,10 +60,10 @@ public class PowerUpManager : MonoBehaviour
                 healthManager.Heal(25);
                 break;
             case 1:
-
+                StartCoroutine(healthManager.IsImmuned(7f));
                 break;
             case 2:
-
+                
                 break;
             case 3:
 

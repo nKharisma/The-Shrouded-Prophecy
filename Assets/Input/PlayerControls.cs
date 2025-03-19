@@ -64,7 +64,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightPoweUp"",
+                    ""name"": ""RightPowerUp"",
                     ""type"": ""Button"",
                     ""id"": ""758dab1c-4de6-4619-b95b-f2b6d8173423"",
                     ""expectedControlType"": """",
@@ -178,7 +178,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightPoweUp"",
+                    ""action"": ""RightPowerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -204,7 +204,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_NPCInteraction = m_PlayerMovement.FindAction("NPCInteraction", throwIfNotFound: true);
         m_PlayerMovement_NextDialogue = m_PlayerMovement.FindAction("NextDialogue", throwIfNotFound: true);
         m_PlayerMovement_LeftPowerUp = m_PlayerMovement.FindAction("LeftPowerUp", throwIfNotFound: true);
-        m_PlayerMovement_RightPoweUp = m_PlayerMovement.FindAction("RightPoweUp", throwIfNotFound: true);
+        m_PlayerMovement_RightPowerUp = m_PlayerMovement.FindAction("RightPowerUp", throwIfNotFound: true);
         m_PlayerMovement_SelectPowerUp = m_PlayerMovement.FindAction("SelectPowerUp", throwIfNotFound: true);
     }
 
@@ -276,7 +276,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_NPCInteraction;
     private readonly InputAction m_PlayerMovement_NextDialogue;
     private readonly InputAction m_PlayerMovement_LeftPowerUp;
-    private readonly InputAction m_PlayerMovement_RightPoweUp;
+    private readonly InputAction m_PlayerMovement_RightPowerUp;
     private readonly InputAction m_PlayerMovement_SelectPowerUp;
     public struct PlayerMovementActions
     {
@@ -286,7 +286,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @NPCInteraction => m_Wrapper.m_PlayerMovement_NPCInteraction;
         public InputAction @NextDialogue => m_Wrapper.m_PlayerMovement_NextDialogue;
         public InputAction @LeftPowerUp => m_Wrapper.m_PlayerMovement_LeftPowerUp;
-        public InputAction @RightPoweUp => m_Wrapper.m_PlayerMovement_RightPoweUp;
+        public InputAction @RightPowerUp => m_Wrapper.m_PlayerMovement_RightPowerUp;
         public InputAction @SelectPowerUp => m_Wrapper.m_PlayerMovement_SelectPowerUp;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
@@ -309,9 +309,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeftPowerUp.started += instance.OnLeftPowerUp;
             @LeftPowerUp.performed += instance.OnLeftPowerUp;
             @LeftPowerUp.canceled += instance.OnLeftPowerUp;
-            @RightPoweUp.started += instance.OnRightPoweUp;
-            @RightPoweUp.performed += instance.OnRightPoweUp;
-            @RightPoweUp.canceled += instance.OnRightPoweUp;
+            @RightPowerUp.started += instance.OnRightPowerUp;
+            @RightPowerUp.performed += instance.OnRightPowerUp;
+            @RightPowerUp.canceled += instance.OnRightPowerUp;
             @SelectPowerUp.started += instance.OnSelectPowerUp;
             @SelectPowerUp.performed += instance.OnSelectPowerUp;
             @SelectPowerUp.canceled += instance.OnSelectPowerUp;
@@ -331,9 +331,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeftPowerUp.started -= instance.OnLeftPowerUp;
             @LeftPowerUp.performed -= instance.OnLeftPowerUp;
             @LeftPowerUp.canceled -= instance.OnLeftPowerUp;
-            @RightPoweUp.started -= instance.OnRightPoweUp;
-            @RightPoweUp.performed -= instance.OnRightPoweUp;
-            @RightPoweUp.canceled -= instance.OnRightPoweUp;
+            @RightPowerUp.started -= instance.OnRightPowerUp;
+            @RightPowerUp.performed -= instance.OnRightPowerUp;
+            @RightPowerUp.canceled -= instance.OnRightPowerUp;
             @SelectPowerUp.started -= instance.OnSelectPowerUp;
             @SelectPowerUp.performed -= instance.OnSelectPowerUp;
             @SelectPowerUp.canceled -= instance.OnSelectPowerUp;
@@ -360,7 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnNPCInteraction(InputAction.CallbackContext context);
         void OnNextDialogue(InputAction.CallbackContext context);
         void OnLeftPowerUp(InputAction.CallbackContext context);
-        void OnRightPoweUp(InputAction.CallbackContext context);
+        void OnRightPowerUp(InputAction.CallbackContext context);
         void OnSelectPowerUp(InputAction.CallbackContext context);
     }
 }

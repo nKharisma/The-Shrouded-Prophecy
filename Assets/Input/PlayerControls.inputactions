@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightPoweUp",
+                    "name": "RightPowerUp",
                     "type": "Button",
                     "id": "758dab1c-4de6-4619-b95b-f2b6d8173423",
                     "expectedControlType": "",
@@ -156,7 +156,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightPoweUp",
+                    "action": "RightPowerUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
