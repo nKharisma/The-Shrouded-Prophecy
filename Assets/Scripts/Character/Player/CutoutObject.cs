@@ -38,7 +38,14 @@ public class CutoutObject : MonoBehaviour
                     Material[] newMaterials = new Material[renderer.materials.Length];
                     for (int i = 0; i < renderer.materials.Length; i++) {
                         newMaterials[i] = new Material(cutoutShader);
+                        
+                        if (renderer.materials[i].HasProperty("_MainTexture"))
+                        {
+                            newMaterials[i].SetTexture("_MainTexture", renderer.materials[i].GetTexture("_MainTexture"));
+                        }
+                    
                     }
+                    
                     renderer.materials = newMaterials;
                 }
             }
