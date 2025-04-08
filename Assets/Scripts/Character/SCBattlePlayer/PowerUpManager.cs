@@ -14,7 +14,7 @@ public class PowerUpManager : MonoBehaviour
     private PlayerControls inputActions;
 
     private int currentPowerUp = 0;
-    private int disabled = 1;
+    private int disabled = 0;
 
     // Start is called before the first frame update
     void Start()
