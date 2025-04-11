@@ -269,7 +269,7 @@ public class WorldSaveGameManager : MonoBehaviour
     
     while (!asyncLoad.isDone) // while the scene is not done loading
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); //Load the world scene asynchronously
+        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); //Load the world scene asynchronously
 
         LoadingScreen.SetActive(true); //loading screen
         
