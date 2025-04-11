@@ -723,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 2808936191983073946, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
       propertyPath: m_Name
-      value: Skill Check and Battle UI 1
+      value: Skill Check and Battle UI 2
       objectReference: {fileID: 0}
     - target: {fileID: 3464181595413285725, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}

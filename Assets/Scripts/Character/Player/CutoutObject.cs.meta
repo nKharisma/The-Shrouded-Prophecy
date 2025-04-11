@@ -3,7 +3,10 @@ guid: 467a1a8870f35456788e4a98d02edfa1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - targetObject: {instanceID: 0}
+  - cutoutShader: {fileID: -6465566751694194690, guid: da0b1c3acf47148cb9f8467d02f1c2a7,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

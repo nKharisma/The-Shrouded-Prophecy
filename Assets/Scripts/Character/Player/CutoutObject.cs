@@ -38,7 +38,14 @@ public class CutoutObject : MonoBehaviour
                     Material[] newMaterials = new Material[renderer.materials.Length];
                     for (int i = 0; i < renderer.materials.Length; i++) {
                         newMaterials[i] = new Material(cutoutShader);
+                        
+                        if (renderer.materials[i].HasProperty("_MainTexture"))
+                        {
+                            newMaterials[i].SetTexture("_MainTexture", renderer.materials[i].GetTexture("_MainTexture"));
+                        }
+                    
                     }
+                    
                     renderer.materials = newMaterials;
                 }
             }
@@ -61,8 +68,8 @@ public class CutoutObject : MonoBehaviour
                 foreach (Material material in renderer.materials)
                 {
                     material.SetVector("_CutoutPos", cutoutPos);
-                    material.SetFloat("_CutoutSize", 0.1f);
-                    material.SetFloat("_FalloffSize", 0.05f);
+                    material.SetFloat("_CutoutSize", 0.12f);
+                    material.SetFloat("_FalloffSize", 0.02f);
                 }
             }
         }

@@ -6,6 +6,12 @@ TagManager:
   tags:
   - PLAYER
   - Enemy
+  - Captain
+  - TrainingDummy
+  - EventsManager
+  - CaptainSkillCheck
+  - TDSkillCheck
+  - SirVeney
   layers:
   - Default
   - TransparentFX

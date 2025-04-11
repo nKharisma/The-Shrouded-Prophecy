@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ using UnityEngine;
         //can only save data with basic data types (int, float, string, etc)
         [Header("Character Info")]
         public string questName;
+        public List<QuestDataEntry> questDataList;
         
         [Header("User Stats")]
         public float secondsPlayed;
@@ -19,4 +21,15 @@ using UnityEngine;
         public float yPosition;
         public float zPosition;
         
+                public CharacterSaveData()
+            {
+                questDataList = new List<QuestDataEntry>();
+            }
+        
+            [Serializable]
+            public class QuestDataEntry
+            {
+                public string questID;
+                public QuestData questData;
+            }
     }
