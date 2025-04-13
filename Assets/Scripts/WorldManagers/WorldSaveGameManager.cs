@@ -276,6 +276,7 @@ public class WorldSaveGameManager : MonoBehaviour
         
         while (!asyncLoad.isDone) //while the scene is not done loading
         {
+            Debug.Log("LOADING");
             //show percentage of loading
             float progressValue = Mathf.Clamp01(asyncLoad.progress / 0.9f);
             int percentage = Mathf.RoundToInt(progressValue * 100);
