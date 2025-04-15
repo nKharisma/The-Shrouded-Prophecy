@@ -100,6 +100,7 @@ public class DuelWithSir : QuestStep
         hasCompletedDuelWithSir = true;
         captainNPCMarker.color = Color.yellow;
         visualIndicatorObject.SetActive(false);
+        UpdateState();
         CompleteStep();
     }
     
@@ -134,5 +135,7 @@ public class DuelWithSir : QuestStep
         }else {
             hasCompletedDuelWithSir = false;
         }
+        
+        UpdateState();
     }
 }

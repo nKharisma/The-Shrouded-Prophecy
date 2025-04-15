@@ -8,6 +8,9 @@ using UnityEngine;
     //we want to reference this data in every save file so we want this script to be serializable (not monobehavior) so we can save it to a file
     public class CharacterSaveData
     {
+        [Header("Scene Index")]
+        public int sceneIndex = 1;
+    
         //can only save data with basic data types (int, float, string, etc)
         [Header("Character Info")]
         public string questName;
@@ -21,7 +24,7 @@ using UnityEngine;
         public float yPosition;
         public float zPosition;
         
-                public CharacterSaveData()
+            public CharacterSaveData()
             {
                 questDataList = new List<QuestDataEntry>();
             }

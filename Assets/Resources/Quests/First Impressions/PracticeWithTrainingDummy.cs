@@ -100,6 +100,7 @@ public class PracticeWithTrainingDummy : QuestStep
         hasCompletedTraining = true;
         sirVeney.transform.GetChild(0).gameObject.SetActive(true);
         visualIndicatorObject.SetActive(false);
+        UpdateState();
         CompleteStep();
     }
     
@@ -134,5 +135,7 @@ public class PracticeWithTrainingDummy : QuestStep
         }else {
             hasCompletedTraining = false;
         }
+        
+        UpdateState();
     }
 }

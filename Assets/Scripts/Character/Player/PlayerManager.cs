@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager //inherit from CharacterManager
 {
@@ -32,6 +33,7 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
     
     public void SavePlayerData(ref CharacterSaveData saveData)
     {
+        saveData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
         saveData.yPosition = transform.position.y;
         saveData.xPosition = transform.position.x;
         saveData.zPosition = transform.position.z;
@@ -40,6 +42,5 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
     public void LoadPlayerData(ref CharacterSaveData saveData)
     {
         transform.position = new Vector3(saveData.xPosition, saveData.yPosition, saveData.zPosition);
-        //characterName stuff here
     }
 }

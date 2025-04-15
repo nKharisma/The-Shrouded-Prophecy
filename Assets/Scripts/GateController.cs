@@ -12,6 +12,7 @@ public class GateController : MonoBehaviour
     {
         // Ensure the gate starts closed
         gateObject.SetActive(true); // True means the gate is "closed"
+        CheckGateState();
     }
 
     private void OnEnable()
@@ -49,4 +50,14 @@ public class GateController : MonoBehaviour
 
         gateObject.transform.position = endPosition; // Ensure the gate reaches the final position
     }
+    
+    private void CheckGateState()
+{
+    Quest quest = QuestManager.instance.GetQuestById("FirstImpressionsSO");
+    if (quest != null && quest.questState == QuestState.In_Progress && !isGateOpen)
+    {
+        StartCoroutine(AnimateGateOpen());
+        isGateOpen = true;
+    }
+}
 }

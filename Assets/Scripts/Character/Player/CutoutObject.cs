@@ -21,6 +21,16 @@ public class CutoutObject : MonoBehaviour
         mainCamera = GetComponent<Camera>();
         ApplyShaderToLayerObjects();
     }
+    
+    private void Start()
+    {
+        if(WorldSaveGameManager.instance != null)
+        {
+            targetObject = WorldSaveGameManager.instance.player.transform;
+        }else {
+            Debug.LogError("WorldSaveGameManager instance is null. Make sure it is initialized before CutoutObject.");
+        }
+    }
 
     private void ApplyShaderToLayerObjects()
     {

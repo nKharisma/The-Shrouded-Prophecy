@@ -7,4 +7,4 @@ public class Enums : MonoBehaviour
     
 }
 
-public enum SaveSlot { Slot1, Slot2, Slot3, Slot4, Slot5, Slot6 }
+public enum SaveSlot { Slot1, Slot2, Slot3, Slot4, Slot5, Slot6, NO_SLOT }

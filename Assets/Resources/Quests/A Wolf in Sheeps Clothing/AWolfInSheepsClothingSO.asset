@@ -17,5 +17,7 @@ MonoBehaviour:
   requiredTrustLevel: 5
   requiredPreviousQuests:
   - {fileID: 11400000, guid: b45c6a6996494d5488cb96c9a029ce29, type: 2}
-  questStepsPrefabs: []
+  questStepsPrefabs:
+  - {fileID: 4084367633436012585, guid: 536c0184c04a3ec419c77fd2d05c625e, type: 3}
+  - {fileID: 1416230715379359401, guid: 382a185f7ef517a419d7fa3cd6dbdfd1, type: 3}
   rewardTrustLevel: 0

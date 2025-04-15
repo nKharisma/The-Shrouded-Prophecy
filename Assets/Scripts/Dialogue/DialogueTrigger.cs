@@ -14,27 +14,50 @@ public class DialogueTrigger : MonoBehaviour
     private bool playerInRange;
     private PlayerControls inputActions;
 
-    public UnityEvent OnDialogueComplete;
+    //public UnityEvent OnDialogueComplete;
+    
+    [SerializeField] private bool autoTriggerDialogue = false;
     private void Awake()
     {
         playerInRange = false;
+                
+        if(visualCue != null)
+        {
+            visualCue.SetActive(false);
+        }
         
-        visualCue.SetActive(false);
-
-        inputActions = new PlayerControls();
+        if(inputActions == null)
+        {
+            inputActions = new PlayerControls();
+        }
         inputActions.Enable();
+
+    }
+    
+    private void OnDestroy()
+    {
+        if (inputActions != null)
+        {
+            inputActions.Disable();
+        }
     }
 
     private void Update()
     {
-        IfDialogueTrigger();
+        if(!autoTriggerDialogue)
+        {
+            IfDialogueTrigger();
+        }
     }
     
     private void IfDialogueTrigger()
     {
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            visualCue.SetActive(true);
+            if(visualCue != null)
+            {
+                visualCue.SetActive(true);
+            }
 
             if (inputActions != null && inputActions.PlayerMovement.NPCInteraction.WasPressedThisFrame())
             {
@@ -44,7 +67,10 @@ public class DialogueTrigger : MonoBehaviour
         }
         else
         {
-            visualCue.SetActive(false);
+            if (visualCue != null)
+            {
+                visualCue.SetActive(false);
+            }
         }
     }
 
@@ -53,6 +79,12 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
+            
+            if (autoTriggerDialogue && !DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                autoTriggerDialogue = false;
+            }
         }
     }
 

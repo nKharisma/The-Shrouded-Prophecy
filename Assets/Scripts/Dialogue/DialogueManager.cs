@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
     private Vector3 noChoicePosition = new Vector3(0f, 10f, 0f);
     private Vector3 choicePosition = new Vector3(0f, 25f, 0f);
     private RectTransform panelRect;
+    
+    private string lastSelectedChoiceText;
 
     private Vector3 downPosition = new Vector3(0f, 5f, 0f);
     private Vector3 sidePosition = new Vector3(340f, 13f, 0f);
@@ -60,15 +62,8 @@ public class DialogueManager : MonoBehaviour
 
         panelRect = dialoguePanel.GetComponent<RectTransform>();
         iconRect = continueIcon.GetComponent<RectTransform>();
-
-        inputActions = new PlayerControls();
-        inputActions.Enable();
     }
     
-    private void OnDestroy() 
-    {
-        inkExternalFunctions.Unbind(questStory);
-    }
 
     public static DialogueManager GetInstance()
     {
@@ -82,6 +77,11 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.instance.dialogueEvents.onDialogueStart += DialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete += DialogueComplete;
         GameEventsManager.instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
+        if(inputActions == null)
+        {
+            inputActions = new PlayerControls();
+        }
+        inputActions.Enable();
     }
     
     private void OnDisable()
@@ -91,6 +91,8 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= DialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= DialogueComplete;
         GameEventsManager.instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
+        inkExternalFunctions.Unbind(questStory);
+        inputActions.Disable();
     }
 
     private void Start()
@@ -308,7 +310,15 @@ public class DialogueManager : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         Story story = isQuestDialogue ? questStory : currentStory;
+        
+        lastSelectedChoiceText = story.currentChoices[choiceIndex].text;
+        
         story.ChooseChoiceIndex(choiceIndex);
+    }
+    
+    public string GetLastSelectedChoice()
+    {
+        return lastSelectedChoiceText;
     }
     
     private bool IsDialogueEmpty(string dialogueLine)

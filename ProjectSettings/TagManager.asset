@@ -12,6 +12,8 @@ TagManager:
   - CaptainSkillCheck
   - TDSkillCheck
   - SirVeney
+  - Healer
+  - Slime
   layers:
   - Default
   - TransparentFX

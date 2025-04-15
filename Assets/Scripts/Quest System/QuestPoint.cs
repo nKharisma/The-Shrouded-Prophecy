@@ -31,11 +31,12 @@ public class QuestPoint : MonoBehaviour
         questID = questInfoForPoint.questID;
         questIcon = GetComponentInChildren<QuestIcon>(true);
         
-        inputActions = new PlayerControls();
-        inputActions.Enable();
-        
         Debug.Log("Quest Point Awake: " + questID);
         
+        if(inputActions == null){
+            inputActions = new PlayerControls();
+        }
+        inputActions.Enable();
     }
     
     private void Start() {
@@ -50,6 +51,12 @@ public class QuestPoint : MonoBehaviour
     private void OnDisable() 
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+        inputActions.Disable();
+    }
+    
+    private void OnDestroy() {
+        //GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+        inputActions.Disable();
     }
     
     private void Update() {

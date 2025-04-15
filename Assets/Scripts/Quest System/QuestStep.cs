@@ -18,10 +18,6 @@ public abstract class QuestStep : MonoBehaviour
         {
             SetQuestStepState(questStepState);
         }
-        /*if(questStepState != null && questStepState.state != "")
-        {
-            SetQuestStepState(questStepState);
-        }*/
     }
     
     protected void CompleteStep() {
