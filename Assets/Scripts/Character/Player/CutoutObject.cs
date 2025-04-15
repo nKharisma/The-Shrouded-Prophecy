@@ -41,12 +41,12 @@ public class CutoutObject : MonoBehaviour
             if(((1 << obj.layer) & wallMask) != 0)
             {
                 Renderer renderer = obj.GetComponent<Renderer>();
-                if (renderer != null)
+                if(renderer != null)
                 {
                     originalMaterials[renderer] = renderer.materials;
 
                     Material[] newMaterials = new Material[renderer.materials.Length];
-                    for (int i = 0; i < renderer.materials.Length; i++) {
+                    for(int i = 0; i < renderer.materials.Length; i++) {
                         newMaterials[i] = new Material(cutoutShader);
                         
                         if (renderer.materials[i].HasProperty("_MainTexture"))
