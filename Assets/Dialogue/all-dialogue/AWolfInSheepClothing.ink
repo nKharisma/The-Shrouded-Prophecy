@@ -30,18 +30,20 @@
 "N-No! I mean… I’m not hurt, but—I can’t fight these things!"
 "I can heal. That’s all I’ve ever been good at. I tried to push them away with my magic, but it just—won’t work like that..."
 
-    ** [You have magic—use it!] 
+    * * [You have magic—use it!] 
         "It’s not like that! Healing doesn’t hurt. I’d have to twist it… and I’m scared of what might happen if I try."
-    ** [It’s okay. Stay behind me.]
+    -> after_second_choice
+    * * [It’s okay. Stay behind me.]
         "You’d really do that...? Just—be careful, okay."
-
-        *** [What are you doing out here?]
+    -> after_second_choice
+=== after_second_choice ===
+        * * * [What are you doing out here?]
             "I was just trying to gather herbs. This area’s usually quiet—I didn’t expect slimes!"
             "I thought… maybe if I found something strong enough, I could help people back in the village. But I didn't think it through..."
 
-            **** [Stay calm. I’ll take care of it.]
+            * * * * [Stay calm. I’ll take care of it.]
                 "You’re serious? Okay—okay. I’ll try not to panic."
-                -> DONE
+    -> slime_battle
 
 
 === slime_battle ===
@@ -52,7 +54,7 @@
 -> slime_battle_result
 
 = slime_battle_result
-{result == 1:
+- result == 1:
     "You did it! Oh, thank you, thank you! I thought I was done for!"
     <i>The companion dusts themselves off, still shaky but clearly relieved.</i>
     "You’re a traveler, right? You’re heading to the town? I… I’d feel a lot safer if I traveled with you."
@@ -69,6 +71,7 @@
     -> DONE
 - else:
     "No! They’re getting closer—please, you have to try again!"
+    "The result is: {result}"
     -> slime_battle
 }
 

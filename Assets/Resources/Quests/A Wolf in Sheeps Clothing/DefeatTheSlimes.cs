@@ -11,7 +11,7 @@ public class DefeatTheSlimes : QuestStep
     private SkillCheckSetup skillCheckSetup;
     private string dialogueKnotName = "slime_battle";
     [Header("Slime Colliders")]
-    private Collider[] slimeColliders;
+    private GameObject[] slimes;
     
     
     private void Awake() {
@@ -20,15 +20,10 @@ public class DefeatTheSlimes : QuestStep
         inputActions = new PlayerControls();
         inputActions.Enable();
         
-        GameObject[] slimes = GameObject.FindGameObjectsWithTag("Slime");
-        slimeColliders = new Collider[slimes.Length];
-        for (int i = 0; i < slimes.Length; i++)
+        slimes = GameObject.FindGameObjectsWithTag("Slime");
+        if (slimes.Length == 0)
         {
-            slimeColliders[i] = slimes[i].GetComponent<Collider>();
-            if(slimeColliders[i] == null)
-            {
-                Debug.Log("Slime collider not found");
-            }
+            Debug.Log("No slimes found in the scene.");
         }
     }
     
@@ -56,31 +51,10 @@ public class DefeatTheSlimes : QuestStep
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
         inputActions.Disable();
     }
-    
-    private bool IsSlimeCollider(Collider collider)
-    {
-        // Check if the collider belongs to one of the slimes
-        foreach (Collider slimeCollider in slimeColliders)
-        {
-            if (collider == slimeCollider)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private void Update()
-    {
-        if(isPlayerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
-        }
-    }
-    
+
     private void OnDialogueStart()
     {
-        if(!isPlayerInRange || hasCompletedBattleWithSlimes)
+        if(hasCompletedBattleWithSlimes)
         {
             return;
         }
@@ -89,23 +63,12 @@ public class DefeatTheSlimes : QuestStep
     private void OnDialogueComplete()
     {
         hasCompletedBattleWithSlimes = true;
+        foreach (GameObject slime in slimes)
+        {
+            Destroy(slime);
+        }
         UpdateState();
         CompleteStep();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!isPlayerInRange && IsSlimeCollider(other))
-        {
-            isPlayerInRange = true;
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if(isPlayerInRange && !IsSlimeCollider(other))
-        {
-            isPlayerInRange = false;
-        }
     }
     
     private void UpdateState()
@@ -118,18 +81,11 @@ public class DefeatTheSlimes : QuestStep
         }else {
             status = "Defeat the slimes!";
         }
-        ChangeState(state, status);
+        ChangeState("", status);
     }
     
     protected override void SetQuestStepState(string state)
     {
-        if(state == "true")
-        {
-            hasCompletedBattleWithSlimes = true;
-        }else {
-            hasCompletedBattleWithSlimes = false;
-        }
-        
-        UpdateState();
+    
     }
 }

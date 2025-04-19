@@ -18,6 +18,9 @@ public class CompanionManager : MonoBehaviour
     public enum PowerType { HealBoost, ImmunityBoost, EnemyDisableBoost }
 
     public List<CompanionData> allCompanions = new List<CompanionData>();
+    
+    public Transform playerTransform;
+    public PowerUpManager powerUpManager;
 
     void Awake()
     {
@@ -36,6 +39,16 @@ public class CompanionManager : MonoBehaviour
         {
             comp.isRecruited = true;
             //comp.companionObject.SetActive(true);
+            
+        CompanionFollowAI followAI = comp.companionObject.GetComponent<CompanionFollowAI>();
+            if (followAI != null)
+            {
+                //followAI.player = playerTransform;
+                followAI.enabled = true;
+            }else if(followAI == null){
+                //followAI.player = playerTransform;
+                followAI.enabled = true;
+            }
             Debug.Log($"{comp.companionName} has joined!");
         }
     }

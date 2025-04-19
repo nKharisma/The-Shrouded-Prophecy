@@ -124430,7 +124430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1506393482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124438,7 +124438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506393481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceaa9921781bd4d2293674baabcbbdef, type: 3}
   m_Name: 
@@ -131042,9 +131042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 660234623}
   inkJSON: {fileID: 4900000, guid: cf9ec9c6d854f1e48b2e7d33a3da0852, type: 3}
-  OnDialogueComplete:
-    m_PersistentCalls:
-      m_Calls: []
   autoTriggerDialogue: 0
 --- !u!65 &1582656827
 BoxCollider:
@@ -177144,3 +177141,5 @@ SceneRoots:
   - {fileID: 1534322893}
   - {fileID: 1758430511}
   - {fileID: 1506393486}
+  - {fileID: 536943496}
+  - {fileID: 898079608}

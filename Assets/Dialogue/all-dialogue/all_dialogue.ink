@@ -4,6 +4,7 @@ EXTERNAL CompleteQuest(questID)
 EXTERNAL playSkillCheckUI()
 EXTERNAL LoadSceneInGame(sceneIndex, x, y, z)
 
+VAR FIresult = 0
 VAR result = 0
 VAR passedTraining = false
 VAR captainDuelPassed = false
