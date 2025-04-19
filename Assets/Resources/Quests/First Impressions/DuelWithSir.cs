@@ -79,6 +79,7 @@ public class DuelWithSir : QuestStep
     {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
     }
     
     private void OnDialogueStart()
@@ -99,6 +100,7 @@ public class DuelWithSir : QuestStep
         hasCompletedDuelWithSir = true;
         captainNPCMarker.color = Color.yellow;
         visualIndicatorObject.SetActive(false);
+        UpdateState();
         CompleteStep();
     }
     
@@ -133,5 +135,7 @@ public class DuelWithSir : QuestStep
         }else {
             hasCompletedDuelWithSir = false;
         }
+        
+        UpdateState();
     }
 }

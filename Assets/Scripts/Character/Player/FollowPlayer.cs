@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public Transform player;
-
+    public static Transform player;
     // Update is called once per frame
+    
+    void Start()
+    {
+        if(WorldSaveGameManager.instance != null)
+        {
+            player = WorldSaveGameManager.instance.player.transform;
+        }else{
+            Debug.LogError("WorldSaveGameManager instance is null. Make sure it is initialized before using FollowPlayer.");
+        }
+    }
     void Update()
     {
         transform.position = player.transform.position + new Vector3(0, 3, -7);

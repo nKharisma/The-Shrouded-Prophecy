@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //SceneManagement is a library that allows you to do some functionality with scenes such as loading a new scene
 using System.IO;
+using UnityEngine.UI;
+using TMPro;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
@@ -26,6 +28,10 @@ public class WorldSaveGameManager : MonoBehaviour
     
     [Header("Save Slots")]
     public CharacterSaveData saveSlot01, saveSlot02, saveSlot03, saveSlot04, saveSlot05, saveSlot06; //These are references to the save slots
+
+    // for loading screen
+    public GameObject LoadingScreen;
+    public TextMeshProUGUI ProgressText;
     
     
     private void Awake()
@@ -233,6 +239,16 @@ public class WorldSaveGameManager : MonoBehaviour
         StartCoroutine(LoadWorldScene()); //load the world scene while the save file is loading
     }
     
+    public void DeleteGame(SaveSlot saveSlot)
+    {
+        
+        saveGameFileWriter = new SaveGameFileWriter();
+        saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; //set the save file directory path
+        saveGameFileWriter.saveFileName = WhichSaveFile(saveSlot); //set the save file name
+        
+        saveGameFileWriter.DeleteSaveFile();
+    }
+    
     private void LoadAllSaveSlots() //preload all save slots
     {
         saveGameFileWriter = new SaveGameFileWriter();
@@ -257,13 +273,45 @@ public class WorldSaveGameManager : MonoBehaviour
         saveSlot06 = saveGameFileWriter.LoadSaveFile();
     }
     
+    private void AutoSave()
+    {
+    saveFileName = WhichSaveFile(currentSaveSlot);
+
+    saveGameFileWriter = new SaveGameFileWriter();
+    saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; // Set the save file directory path
+    saveGameFileWriter.saveFileName = saveFileName; // Set the save file name
+
+    player.SavePlayerData(ref currentSaveData); // Save the player data
+    QuestManager.instance.SaveQuest(ref currentSaveData); // Save the quest data
+
+    saveGameFileWriter.CreateNewSaveFile(currentSaveData); // Create a new save file
+    Debug.Log("Game auto-saved.");
+    }
+    
     public IEnumerator LoadWorldScene()
 {
-    AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); // Load the world scene asynchronously
+    //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); // Load the world scene asynchronously
+    
+    AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentSaveData.sceneIndex);
     
     while (!asyncLoad.isDone) // while the scene is not done loading
     {
-        yield return null; // return null
+        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(worldSceneIndex); //Load the world scene asynchronously
+
+        LoadingScreen.SetActive(true); //loading screen
+        
+        
+        while (!asyncLoad.isDone) //while the scene is not done loading
+        {
+            Debug.Log("LOADING");
+            //show percentage of loading
+            float progressValue = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            int percentage = Mathf.RoundToInt(progressValue * 100);
+            ProgressText.text = percentage + "%";
+            yield return null; //return null
+        }
+        
+        player.LoadPlayerData(ref currentSaveData);
     }
     
     if (currentSaveData == null)
@@ -316,6 +364,56 @@ public class WorldSaveGameManager : MonoBehaviour
     player.LoadPlayerData(ref currentSaveData);
 }
     
+    public IEnumerator LoadSceneInGame(int sceneIndex, Vector3 spawnPosition)
+    {
+        AutoSave();
+    
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex); // Load the world scene asynchronously
+        
+        while (!asyncLoad.isDone) // while the scene is not done loading
+        {
+            yield return null; // return null
+        }
+        Debug.Log(player.transform.position);
+        
+        //player.transform.position = spawnPosition;
+        
+        Debug.Log(spawnPosition);
+        if (player == null)
+        {
+            Debug.LogError("player is null");
+            yield break;
+        }
+        
+        /*
+        if(QuestManager.instance != null)
+        {
+            foreach (Quest quest in QuestManager.instance.questMap.Values)
+            {
+                if (currentSaveData.questName == null)
+                {
+                    Debug.LogError("currentSaveData.questName is null");
+                    continue;
+                }
+    
+                QuestInfoSO questInfoSO = quest.questInfoSO;
+                if (questInfoSO == null)
+                {
+                    Debug.LogError($"Failed to load quest info SO: {currentSaveData.questName}");
+                    continue;
+                }
+
+                Quest loadedQuest = QuestManager.instance.LoadQuest(ref currentSaveData, questInfoSO);
+
+                if (loadedQuest == null)
+                {
+                    Debug.LogError("loadedQuest is null");
+                    continue;
+                }
+            }
+        }    */    
+        AutoSave();
+    }
     public string WhichSaveFile(SaveSlot characterSlot) //This function returns the save file name
     {
         string saveFileName = "";

@@ -79,6 +79,7 @@ public class PracticeWithTrainingDummy : QuestStep
     {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
     }
     
     private void OnDialogueStart()
@@ -99,6 +100,7 @@ public class PracticeWithTrainingDummy : QuestStep
         hasCompletedTraining = true;
         sirVeney.transform.GetChild(0).gameObject.SetActive(true);
         visualIndicatorObject.SetActive(false);
+        UpdateState();
         CompleteStep();
     }
     
@@ -133,5 +135,7 @@ public class PracticeWithTrainingDummy : QuestStep
         }else {
             hasCompletedTraining = false;
         }
+        
+        UpdateState();
     }
 }

@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
     
         questMap = CreateQuestMap();
         
-        Quest quest = GetQuestById("FirstImpressionsSO");
+        Quest quest = GetQuestById("AWolfInSheepsClothingSO");
         Debug.Log("Quest State: " + quest.questState);
         //Debug.Log(quest.GetCurrentStep());
     }
@@ -198,7 +198,7 @@ public class QuestManager : MonoBehaviour
         foreach (Quest quest in questMap.Values)
         {
             QuestData questData = quest.GetQuestData();
-            saveData.questDataList.Add(new CharacterSaveData.QuestDataEntry
+            saveData.questDataList.Add(new CharacterSaveData.QuestDataEntry()
             {
                 questID = quest.questInfoSO.questID,
                 questData = questData
@@ -232,6 +232,7 @@ public class QuestManager : MonoBehaviour
             {
                 if (entry.questID == questInfoSO.questID)
                 {
+                    Debug.Log(entry.questData.questStepIndex);
                     QuestData questData = entry.questData;
                     quest = new Quest(questInfoSO, questData.state, questData.questStepIndex, questData.questStepStates); 
                     Debug.Log("Loaded quest data: " + questInfoSO.questID);
@@ -239,7 +240,8 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
-        else
+        
+        if (quest == null)
         {
             Debug.LogWarning("saveData.questDataList is null");
             quest = new Quest(questInfoSO);
@@ -249,7 +251,6 @@ public class QuestManager : MonoBehaviour
     {
         Debug.LogError("Error loading quest data: " + questInfoSO.questID + ": " + e);
     }
-    quest = quest ?? new Quest(questInfoSO);
     return quest;
 }
 }

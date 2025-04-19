@@ -53,33 +53,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LeftPowerUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""4e01b28f-b049-4c37-87e0-dab7b437c0ea"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightPowerUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""758dab1c-4de6-4619-b95b-f2b6d8173423"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectPowerUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""be7604f3-3eb8-46e4-811d-d73b6fde6354"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -139,6 +112,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Arrows"",
+                    ""id"": ""fef8e59d-ee99-41fa-bf69-0fc74286f51a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""25755207-70af-4608-9b9e-fb962ea7af7a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""53006a3c-1635-426e-9caa-347acb474336"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2463f650-b297-4e6b-9e9a-f30c848b1d4c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a4789cfb-e8ca-40ab-9ebb-58be38328867"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""9bca8d21-e128-4e96-997b-9721df6275eb"",
                     ""path"": ""<Keyboard>/e"",
@@ -159,37 +187,32 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""NextDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""27b56f95-3922-402e-8600-0d95a96732ef"",
+            ""actions"": [
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""d517bb9d-aac7-4ee7-ab98-294230d3acad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c7acb8db-4db1-47f6-a137-598e061f0aa3"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""a06d3d37-0974-42f9-bd08-bb2b2dc535bb"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftPowerUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc50c9d3-f9ec-4523-bf40-d2670c162234"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightPowerUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e90bbaea-1a52-488f-97dc-7aa9cb9165a7"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SelectPowerUp"",
+                    ""action"": ""Delete"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -203,14 +226,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerMovement_NPCInteraction = m_PlayerMovement.FindAction("NPCInteraction", throwIfNotFound: true);
         m_PlayerMovement_NextDialogue = m_PlayerMovement.FindAction("NextDialogue", throwIfNotFound: true);
-        m_PlayerMovement_LeftPowerUp = m_PlayerMovement.FindAction("LeftPowerUp", throwIfNotFound: true);
-        m_PlayerMovement_RightPowerUp = m_PlayerMovement.FindAction("RightPowerUp", throwIfNotFound: true);
-        m_PlayerMovement_SelectPowerUp = m_PlayerMovement.FindAction("SelectPowerUp", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Delete = m_UI.FindAction("Delete", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_PlayerMovement.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerMovement.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -275,9 +299,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Movement;
     private readonly InputAction m_PlayerMovement_NPCInteraction;
     private readonly InputAction m_PlayerMovement_NextDialogue;
-    private readonly InputAction m_PlayerMovement_LeftPowerUp;
-    private readonly InputAction m_PlayerMovement_RightPowerUp;
-    private readonly InputAction m_PlayerMovement_SelectPowerUp;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -285,9 +306,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputAction @NPCInteraction => m_Wrapper.m_PlayerMovement_NPCInteraction;
         public InputAction @NextDialogue => m_Wrapper.m_PlayerMovement_NextDialogue;
-        public InputAction @LeftPowerUp => m_Wrapper.m_PlayerMovement_LeftPowerUp;
-        public InputAction @RightPowerUp => m_Wrapper.m_PlayerMovement_RightPowerUp;
-        public InputAction @SelectPowerUp => m_Wrapper.m_PlayerMovement_SelectPowerUp;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -306,15 +324,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NextDialogue.started += instance.OnNextDialogue;
             @NextDialogue.performed += instance.OnNextDialogue;
             @NextDialogue.canceled += instance.OnNextDialogue;
-            @LeftPowerUp.started += instance.OnLeftPowerUp;
-            @LeftPowerUp.performed += instance.OnLeftPowerUp;
-            @LeftPowerUp.canceled += instance.OnLeftPowerUp;
-            @RightPowerUp.started += instance.OnRightPowerUp;
-            @RightPowerUp.performed += instance.OnRightPowerUp;
-            @RightPowerUp.canceled += instance.OnRightPowerUp;
-            @SelectPowerUp.started += instance.OnSelectPowerUp;
-            @SelectPowerUp.performed += instance.OnSelectPowerUp;
-            @SelectPowerUp.canceled += instance.OnSelectPowerUp;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -328,15 +337,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NextDialogue.started -= instance.OnNextDialogue;
             @NextDialogue.performed -= instance.OnNextDialogue;
             @NextDialogue.canceled -= instance.OnNextDialogue;
-            @LeftPowerUp.started -= instance.OnLeftPowerUp;
-            @LeftPowerUp.performed -= instance.OnLeftPowerUp;
-            @LeftPowerUp.canceled -= instance.OnLeftPowerUp;
-            @RightPowerUp.started -= instance.OnRightPowerUp;
-            @RightPowerUp.performed -= instance.OnRightPowerUp;
-            @RightPowerUp.canceled -= instance.OnRightPowerUp;
-            @SelectPowerUp.started -= instance.OnSelectPowerUp;
-            @SelectPowerUp.performed -= instance.OnSelectPowerUp;
-            @SelectPowerUp.canceled -= instance.OnSelectPowerUp;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -354,13 +354,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Delete;
+    public struct UIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Delete => m_Wrapper.m_UI_Delete;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Delete.started += instance.OnDelete;
+            @Delete.performed += instance.OnDelete;
+            @Delete.canceled += instance.OnDelete;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Delete.started -= instance.OnDelete;
+            @Delete.performed -= instance.OnDelete;
+            @Delete.canceled -= instance.OnDelete;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnNPCInteraction(InputAction.CallbackContext context);
         void OnNextDialogue(InputAction.CallbackContext context);
-        void OnLeftPowerUp(InputAction.CallbackContext context);
-        void OnRightPowerUp(InputAction.CallbackContext context);
-        void OnSelectPowerUp(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnDelete(InputAction.CallbackContext context);
     }
 }

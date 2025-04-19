@@ -68,6 +68,7 @@ public class DuelWithCaptain : QuestStep
     private void OnDestroy() {
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
     }
     
     private void OnDialogueStart() 

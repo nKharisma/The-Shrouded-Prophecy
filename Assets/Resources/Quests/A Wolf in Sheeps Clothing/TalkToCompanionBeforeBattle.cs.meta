@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e480e8d045e1dcc44a2342e9c460efb4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - questQuestionMark: {fileID: 1314314700, guid: 132358e9bf26b60458b731bf001e31db,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

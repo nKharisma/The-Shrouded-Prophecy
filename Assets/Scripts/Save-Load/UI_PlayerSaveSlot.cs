@@ -121,4 +121,9 @@ public class UI_PlayerSaveSlot : MonoBehaviour
         WorldSaveGameManager.instance.currentSaveSlot = characterSaveSlot;
         WorldSaveGameManager.instance.LoadGame();
     }
+
+    public void SelectCurrentSlot()
+    {
+        TitleScreenManager.instance.SelectSaveSlot(characterSaveSlot);
+    }
 }

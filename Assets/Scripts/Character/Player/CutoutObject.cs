@@ -5,7 +5,7 @@ using UnityEngine;
 public class CutoutObject : MonoBehaviour
 {
     [SerializeField]
-    private Transform targetObject;
+    public static Transform targetObject;
 
     [SerializeField]
     private LayerMask wallMask;
@@ -21,6 +21,16 @@ public class CutoutObject : MonoBehaviour
         mainCamera = GetComponent<Camera>();
         ApplyShaderToLayerObjects();
     }
+    
+    private void Start()
+    {
+        if(WorldSaveGameManager.instance != null)
+        {
+            targetObject = WorldSaveGameManager.instance.player.transform;
+        }else {
+            Debug.LogError("WorldSaveGameManager instance is null. Make sure it is initialized before CutoutObject.");
+        }
+    }
 
     private void ApplyShaderToLayerObjects()
     {
@@ -31,14 +41,21 @@ public class CutoutObject : MonoBehaviour
             if(((1 << obj.layer) & wallMask) != 0)
             {
                 Renderer renderer = obj.GetComponent<Renderer>();
-                if (renderer != null)
+                if(renderer != null)
                 {
                     originalMaterials[renderer] = renderer.materials;
 
                     Material[] newMaterials = new Material[renderer.materials.Length];
-                    for (int i = 0; i < renderer.materials.Length; i++) {
+                    for(int i = 0; i < renderer.materials.Length; i++) {
                         newMaterials[i] = new Material(cutoutShader);
+                        
+                        if (renderer.materials[i].HasProperty("_MainTexture"))
+                        {
+                            newMaterials[i].SetTexture("_MainTexture", renderer.materials[i].GetTexture("_MainTexture"));
+                        }
+                    
                     }
+                    
                     renderer.materials = newMaterials;
                 }
             }

@@ -34,6 +34,7 @@ public class PlayerInputManager : MonoBehaviour
     private void Update() {
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
+            ClearInput();
             return;
         }
 
@@ -41,7 +42,7 @@ public class PlayerInputManager : MonoBehaviour
     }
     
     private void OnSceneChange(Scene current, Scene next) {
-        if (next.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex()) {
+        if (next.buildIndex != 0) {
             instance.enabled = true;
         }else {
             instance.enabled = false;
@@ -58,6 +59,7 @@ public class PlayerInputManager : MonoBehaviour
     
     private void OnDestroy() {
         SceneManager.activeSceneChanged -= OnSceneChange; //unsubscribe from the active scene changed event
+        inputActions.Disable();
     }
     
     private void MovementInput() {
@@ -73,6 +75,15 @@ public class PlayerInputManager : MonoBehaviour
         {
             moveAmount = 1f;
         }
+        
+        player.playerAnimatorManager.UpdateAnimatorValues(vertical, horizontal); //update the animator values with the vertical and horizontal input
+    }
+    
+    private void ClearInput()
+    {
+        horizontal = 0;
+        vertical = 0;
+        moveAmount = 0;
         
         player.playerAnimatorManager.UpdateAnimatorValues(vertical, horizontal); //update the animator values with the vertical and horizontal input
     }
