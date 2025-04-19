@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class SCBattlePlayerControls : MonoBehaviour
 {
-    [SerializeField] private float movSpeed;
+    [SerializeField] private float baseSpeed;
     [SerializeField] private RectTransform canvas;
     [SerializeField] private RectTransform skillCheckSquare;
     
     private Vector2 moveInput;
     private Vector2 moveVelocity;
 
+    private float adjustedSpeed;
+
+    void Start ()
+    {
+        Vector2 refResolution = new Vector2(1920, 1080);
+        Vector2 curCanvasSize = canvas.rect.size;
+
+        float heightRatio = curCanvasSize.x / refResolution.x;
+        adjustedSpeed = baseSpeed * heightRatio;
+    }
+
     void Update()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal") * movSpeed;
-        moveInput.y = Input.GetAxisRaw("Vertical") * movSpeed;
+        moveInput.x = Input.GetAxisRaw("Horizontal") * adjustedSpeed;
+        moveInput.y = Input.GetAxisRaw("Vertical") * adjustedSpeed;
 
-        moveVelocity = moveInput.normalized * movSpeed;
+        moveVelocity = moveInput.normalized * adjustedSpeed;
 
         skillCheckSquare.anchoredPosition += moveVelocity * Time.deltaTime;
 
