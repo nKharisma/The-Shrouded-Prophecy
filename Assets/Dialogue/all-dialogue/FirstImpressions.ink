@@ -9,7 +9,7 @@
     <i>The soldier gives you a knowing look.</i>  
     "That’s what they all say. Good luck, kid."
     ~ StartQuest("FirstImpressionsSO")
-   ~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
+   //~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
 -> DONE
 
 === CaptainDialogue ===
