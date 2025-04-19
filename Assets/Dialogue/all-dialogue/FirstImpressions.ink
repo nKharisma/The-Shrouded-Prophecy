@@ -9,7 +9,7 @@
     <i>The soldier gives you a knowing look.</i>  
     "That’s what they all say. Good luck, kid."
     ~ StartQuest("FirstImpressionsSO")
-   // ~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
+   ~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
 -> DONE
 
 === CaptainDialogue ===
@@ -135,6 +135,6 @@ Are you prepared?
     "Alright. I think you've proven yourself... for now. Time for your first real mission."  
     ~ CompleteQuest("FirstImpressionsSO")  
     "Don't get comfortable, this is nothing like the real thing."  
-<i>This is the end of the tutorial, you are free to explore the world and interact with other NPCs, we know that it might not be a lot of content but we hope you enjoyed the demo and cannot wait to show you the final project!</i>
+<i>This is the end of the tutorial, you are free to explore the world and interact with other NPCs/Objects, or move onto the next quest!</i>
 -> DONE
 

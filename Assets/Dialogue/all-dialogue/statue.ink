@@ -6,4 +6,3 @@ VAR hasReadStatue = false
 - else:
     "Dedicated to Arthur, who once won a staring contest against a goat. May his legacy live on."
 }
-

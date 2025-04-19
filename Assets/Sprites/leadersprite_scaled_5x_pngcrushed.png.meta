@@ -1,0 +1,378 @@
+fileFormatVersion: 2
+guid: aeb7954a441d3dc498fc8b5639987b58
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 830
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 511abf6bc88fc0642bce3a7b6a29d0db
+      internalID: 15623145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_1
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 830
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d958d07916c9f42aef50146f4ce0c4
+      internalID: 1465589628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_2
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 830
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea28962de6249a346a935ed3230438bf
+      internalID: 153363668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 570
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61d2011ccc07cc41b2e27dc1428cc4f
+      internalID: -854066517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_4
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 570
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb662a399efd5d46af29b0fe7fd0f31
+      internalID: 113148349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 570
+        width: 80
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f87ffc07d575f48bc5f0213fe208ef
+      internalID: -1848341683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_6
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 310
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c92b8118e66abff47a4e635c531b6ca9
+      internalID: 1946271148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_7
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 310
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6074e946bae17744eb1bcd41f0af51b5
+      internalID: -792891236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_8
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 310
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825bd804cb6f44d4e98ea111b8ba3b6d
+      internalID: -1666682887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 50
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb5009c7035fdd4aaca1b117b0c3ef5
+      internalID: -656621068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_10
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 50
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad46ea512b158c4cb9b0ca8076830c0
+      internalID: 105713967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leadersprite_scaled_5x_pngcrushed_11
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 50
+        width: 70
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9587e3591e414849a9d41048001dd65
+      internalID: -1592976781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 66061700f33e6454bae00ff694ef4cfd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      leadersprite_scaled_5x_pngcrushed_0: 15623145
+      leadersprite_scaled_5x_pngcrushed_1: 1465589628
+      leadersprite_scaled_5x_pngcrushed_10: 105713967
+      leadersprite_scaled_5x_pngcrushed_11: -1592976781
+      leadersprite_scaled_5x_pngcrushed_2: 153363668
+      leadersprite_scaled_5x_pngcrushed_3: -854066517
+      leadersprite_scaled_5x_pngcrushed_4: 113148349
+      leadersprite_scaled_5x_pngcrushed_5: -1848341683
+      leadersprite_scaled_5x_pngcrushed_6: 1946271148
+      leadersprite_scaled_5x_pngcrushed_7: -792891236
+      leadersprite_scaled_5x_pngcrushed_8: -1666682887
+      leadersprite_scaled_5x_pngcrushed_9: -656621068
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

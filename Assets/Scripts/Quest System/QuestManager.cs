@@ -18,13 +18,14 @@ public class QuestManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }else {
             Destroy(gameObject);
         }
     
         questMap = CreateQuestMap();
         
-        Quest quest = GetQuestById("FirstImpressionsSO");
+        Quest quest = GetQuestById("AWolfInSheepsClothingSO");
         Debug.Log("Quest State: " + quest.questState);
         //Debug.Log(quest.GetCurrentStep());
     }
@@ -231,6 +232,7 @@ public class QuestManager : MonoBehaviour
             {
                 if (entry.questID == questInfoSO.questID)
                 {
+                    Debug.Log(entry.questData.questStepIndex);
                     QuestData questData = entry.questData;
                     quest = new Quest(questInfoSO, questData.state, questData.questStepIndex, questData.questStepStates); 
                     Debug.Log("Loaded quest data: " + questInfoSO.questID);

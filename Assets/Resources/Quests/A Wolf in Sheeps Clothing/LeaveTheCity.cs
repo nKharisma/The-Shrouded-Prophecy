@@ -95,12 +95,17 @@ public class LeaveTheCity : QuestStep
         
         // Check the player's choice
         string playerChoice = DialogueManager.GetInstance().GetLastSelectedChoice();
+        Debug.Log("Player choice: " + playerChoice);
+        
         if (playerChoice == "I'm ready to go.")
         {
             hasLeftCity = true;
+            UpdateState();
             CompleteStep();
+            Vector3 spawnPosition = new Vector3(-44.5f, 14.72f, 48.59f);
+            StartCoroutine(WorldSaveGameManager.instance.LoadSceneInGame(2, spawnPosition));        
+            }
         }
-    }
     
     private void OnTriggerEnter(Collider collider)
     {
@@ -121,19 +126,18 @@ public class LeaveTheCity : QuestStep
     private void UpdateState()
     {
         string state = hasLeftCity ? "true" : "false";
-        string statue = state;
-        ChangeState(state, statue);
+        string status = "";
+        if(state == "true")
+        {
+            status = "You have left the city.";
+        }else {
+            status = "You are still in the city.";
+        }
+        ChangeState("", status);
     }
     
     protected override void SetQuestStepState(string state)
     {
-        if (state == "true")
-        {
-            hasLeftCity = true;
-        }else {
-            hasLeftCity = false;
-        }
         
-        UpdateState();
     }
 }

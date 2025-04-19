@@ -77,15 +77,18 @@ public class RecruitMira : QuestStep
         if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
         {
             visualIndicatorObject.SetActive(false);
+            hasCompletedRecruitMira = true;
         }
     }
     
     private void OnDialogueComplete()
     {
-        hasCompletedRecruitMira = true;
-        CompanionManager.instance.RecruitCompanion("Mira");
-        UpdateState();
-        CompleteStep();
+        if(hasCompletedRecruitMira)
+        {
+            CompanionManager.instance.RecruitCompanion("Mira");
+            UpdateState();
+            CompleteStep();
+        }
     }
     
     private void OnTriggerEnter(Collider other) 
@@ -119,7 +122,6 @@ public class RecruitMira : QuestStep
 
 	protected override void SetQuestStepState(string questStepState)
 	{
-		hasCompletedRecruitMira = questStepState == "true";
-		UpdateState();
+		
 	}
 }

@@ -25,9 +25,6 @@ public class TitleScreenManager : MonoBehaviour
     [Header("Save Slot")]
     public SaveSlot currentSaveSlot = SaveSlot.NO_SLOT;
     
-    [Header("Title Screen Inputs")]
-    [SerializeField] bool deleteCharacterSlot = false;
-    
     private void Awake() {
         if (instance == null) 
         {

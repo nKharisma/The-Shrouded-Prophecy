@@ -54,7 +54,13 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("More than one Dialogue Manager in this scene");
         }
 
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }else {
+            Destroy(gameObject);
+        }
         
         questStory = new Story(inkJson.text);
         inkExternalFunctions = new InkExternalFunctions();
@@ -149,7 +155,6 @@ public class DialogueManager : MonoBehaviour
     
     public void EnterDialogue(string knotName)
     {
-        
         if(dialogueIsPlaying)
         {
             return;
@@ -157,7 +162,7 @@ public class DialogueManager : MonoBehaviour
         
         dialogueIsPlaying = true;
         isQuestDialogue = true;
-                
+        
         if(!knotName.Equals(""))
         {
             questStory.ChoosePathString(knotName);
@@ -308,13 +313,24 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void MakeChoice(int choiceIndex)
+{
+    Story story = isQuestDialogue ? questStory : currentStory;
+    
+    lastSelectedChoiceText = story.currentChoices[choiceIndex].text;
+
+    story.ChooseChoiceIndex(choiceIndex);
+
+    // Continue the story right after choosing
+    if (isQuestDialogue)
     {
-        Story story = isQuestDialogue ? questStory : currentStory;
-        
-        lastSelectedChoiceText = story.currentChoices[choiceIndex].text;
-        
-        story.ChooseChoiceIndex(choiceIndex);
+        ContinueOrExitStory();
     }
+    else
+    {
+        ContinueStory();
+    }
+}
+
     
     public string GetLastSelectedChoice()
     {

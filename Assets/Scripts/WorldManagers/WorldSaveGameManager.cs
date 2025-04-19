@@ -364,9 +364,9 @@ public class WorldSaveGameManager : MonoBehaviour
     player.LoadPlayerData(ref currentSaveData);
 }
     
-    
     public IEnumerator LoadSceneInGame(int sceneIndex, Vector3 spawnPosition)
     {
+        AutoSave();
     
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex); // Load the world scene asynchronously
         
@@ -374,7 +374,11 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             yield return null; // return null
         }
+        Debug.Log(player.transform.position);
         
+        //player.transform.position = spawnPosition;
+        
+        Debug.Log(spawnPosition);
         if (player == null)
         {
             Debug.LogError("player is null");
@@ -385,31 +389,29 @@ public class WorldSaveGameManager : MonoBehaviour
         if(QuestManager.instance != null)
         {
             foreach (Quest quest in QuestManager.instance.questMap.Values)
-        {
-            if (currentSaveData.questName == null)
             {
-                Debug.LogError("currentSaveData.questName is null");
-                continue;
-            }
+                if (currentSaveData.questName == null)
+                {
+                    Debug.LogError("currentSaveData.questName is null");
+                    continue;
+                }
+    
+                QuestInfoSO questInfoSO = quest.questInfoSO;
+                if (questInfoSO == null)
+                {
+                    Debug.LogError($"Failed to load quest info SO: {currentSaveData.questName}");
+                    continue;
+                }
 
-            QuestInfoSO questInfoSO = quest.questInfoSO;
-            if (questInfoSO == null)
-            {
-                Debug.LogError($"Failed to load quest info SO: {currentSaveData.questName}");
-                continue;
-            }
+                Quest loadedQuest = QuestManager.instance.LoadQuest(ref currentSaveData, questInfoSO);
 
-            Quest loadedQuest = QuestManager.instance.LoadQuest(ref currentSaveData, questInfoSO);
-
-            if (loadedQuest == null)
-            {
-                Debug.LogError("loadedQuest is null");
-                continue;
+                if (loadedQuest == null)
+                {
+                    Debug.LogError("loadedQuest is null");
+                    continue;
+                }
             }
-        }*/
-        
-        player.transform.position = spawnPosition;
-        
+        }    */    
         AutoSave();
     }
     public string WhichSaveFile(SaveSlot characterSlot) //This function returns the save file name

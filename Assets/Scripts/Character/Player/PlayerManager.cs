@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager //inherit from CharacterManager
 {
+    public static Transform playerTransform;
     public PlayerMovement playerMotionManager;
     public PlayerAnimatorManager playerAnimatorManager;
     
     protected override void Awake() { 
         base.Awake();
         
+        playerTransform = this.transform;
         //stuff only for the player
         playerMotionManager = GetComponent<PlayerMovement>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         PlayerInputManager.instance.player = this;
         WorldSaveGameManager.instance.player = this;
+        FollowPlayer.player = playerTransform;
+        CutoutObject.targetObject = playerTransform;
     }
     
     protected override void Update()

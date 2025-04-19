@@ -17,6 +17,8 @@ public class DefeatTheSlimes : QuestStep
     private void Awake() {
         hasCompletedBattleWithSlimes = false;
         isPlayerInRange = false;
+        inputActions = new PlayerControls();
+        inputActions.Enable();
         
         GameObject[] slimes = GameObject.FindGameObjectsWithTag("Slime");
         slimeColliders = new Collider[slimes.Length];
@@ -90,17 +92,17 @@ public class DefeatTheSlimes : QuestStep
         UpdateState();
         CompleteStep();
     }
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
-        if(!isPlayerInRange && IsSlimeCollider(GetComponent<Collider>()))
+        if(!isPlayerInRange && IsSlimeCollider(other))
         {
             isPlayerInRange = true;
         }
     }
     
-    private void OnTriggerExit()
+    private void OnTriggerExit(Collider other)
     {
-        if(isPlayerInRange && !IsSlimeCollider(GetComponent<Collider>()))
+        if(isPlayerInRange && !IsSlimeCollider(other))
         {
             isPlayerInRange = false;
         }

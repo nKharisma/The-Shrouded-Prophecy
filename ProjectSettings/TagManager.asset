@@ -4,16 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PLAYER
-  - Enemy
   - Captain
   - TrainingDummy
   - EventsManager
-  - CaptainSkillCheck
-  - TDSkillCheck
   - SirVeney
   - Healer
   - Slime
+  - ElderIden
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CutoutObject : MonoBehaviour
 {
     [SerializeField]
-    private Transform targetObject;
+    public static Transform targetObject;
 
     [SerializeField]
     private LayerMask wallMask;

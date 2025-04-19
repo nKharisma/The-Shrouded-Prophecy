@@ -13,7 +13,7 @@ public class GameEventsManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject.transform.root.gameObject);
+            DontDestroyOnLoad(gameObject);
         }else {
             Destroy(this);
         }

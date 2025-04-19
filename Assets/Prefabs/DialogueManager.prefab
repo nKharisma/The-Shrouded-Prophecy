@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
+  choices: []
+  continueIcon: {fileID: 0}
+  inkJson: {fileID: 0}

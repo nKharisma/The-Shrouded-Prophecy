@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerTrustManager : MonoBehaviour
 {
+    public static PlayerTrustManager instance;
     [Header("Trust")]
     [SerializeField] private int startingTrustAmount = 0;
     [SerializeField] private int maxTrustAmount = 100;
@@ -13,6 +14,14 @@ public class PlayerTrustManager : MonoBehaviour
     
     private void Awake() {
         currentTrustAmount = startingTrustAmount;
+        
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }else {
+            Destroy(gameObject);
+        }
     }
     
     private void OnEnable()

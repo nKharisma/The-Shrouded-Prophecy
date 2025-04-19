@@ -77,16 +77,19 @@ public class TravelToTheTown : QuestStep
         if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
         {
             visualIndicatorObject.SetActive(false);
+            hasCompletedTravelToTown = true;
         }
 	}
 	
 	private void OnDialogueComplete()
 	{
-        hasCompletedTravelToTown = true;
+        if(hasCompletedTravelToTown){
         miraCollider.enabled = false;
         UpdateState();
         //here to transfer the player to the town
         CompleteStep();
+        WorldSaveGameManager.instance.LoadSceneInGame(3, new Vector3(-90.4f, 5.16f, 79.31f));
+        }
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -121,7 +124,6 @@ public class TravelToTheTown : QuestStep
 
 	protected override void SetQuestStepState(string questStepState)
 	{
-        hasCompletedTravelToTown = questStepState == "true";
-        UpdateState();
+        
 	}
 }
