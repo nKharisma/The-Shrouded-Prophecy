@@ -12300,6 +12300,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4186090462190756093, guid: 2e9ddfb237db1495589228d68eee30b7,
+        type: 3}
+      propertyPath: baseSpeed
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4481181054160021448, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
       propertyPath: m_RenderMode
