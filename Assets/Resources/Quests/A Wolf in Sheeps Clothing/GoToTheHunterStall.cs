@@ -9,8 +9,8 @@ public class GoToTheHunterStall : QuestStep
     private bool isAtHunterStall;
     private PlayerControls inputActions;
     private GameObject wayPoint;
-    private BoxCollider wayPointCollider;
     
+    private SpriteRenderer spriteRenderer;
     private string dialogueKnotName = "hunters_tent";
 
 	private void Awake()
@@ -30,12 +30,22 @@ public class GoToTheHunterStall : QuestStep
 			return;
 		}
 		
-		wayPointCollider = wayPoint.GetComponent<BoxCollider>();
+		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = true;
+
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
 		
 		GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
 		GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+	}
+	
+	private void Update()
+	{
+		if(!isAtHunterStall && isPlayerInRange)
+		{
+			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
 	}
 
 	private void OnDestroy()
@@ -56,6 +66,7 @@ public class GoToTheHunterStall : QuestStep
 		if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
 		{
 			isAtHunterStall = true;
+			spriteRenderer.enabled = false;
 		}
 	}
 	
@@ -64,12 +75,11 @@ public class GoToTheHunterStall : QuestStep
 		if(isAtHunterStall)
 		{
 			UpdateState();
-			CompleteStep();
-			
 			if(wayPoint != null)
 			{
 				Destroy(wayPoint);
 			}
+			CompleteStep();
 		}
 	}
 

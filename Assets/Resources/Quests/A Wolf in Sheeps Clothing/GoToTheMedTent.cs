@@ -9,7 +9,7 @@ public class GoToTheMedTent : QuestStep
     private bool isAtHealerTent;
     private PlayerControls inputActions;
     private GameObject wayPoint;
-    private BoxCollider wayPointCollider;
+    private SpriteRenderer spriteRenderer;
     
     private string dialogueKnotName = "healers_tent";
 
@@ -30,12 +30,21 @@ public class GoToTheMedTent : QuestStep
 			return;
 		}
 		
-		wayPointCollider = wayPoint.GetComponent<BoxCollider>();
+		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = true;
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
 		
 		GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
 		GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+	}
+	
+	private void Update()
+	{
+		if(!isAtHealerTent && isPlayerInRange)
+		{
+			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
 	}
 
 	private void OnDestroy()
@@ -56,6 +65,7 @@ public class GoToTheMedTent : QuestStep
 		if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
 		{
 			isAtHealerTent = true;
+			spriteRenderer.enabled = false;
 		}
 	}
 	
@@ -64,12 +74,12 @@ public class GoToTheMedTent : QuestStep
 		if(isAtHealerTent)
 		{
 			UpdateState();
-			CompleteStep();
 			
 			if(wayPoint != null)
 			{
 				Destroy(wayPoint);
 			}
+			CompleteStep();
 		}
 	}
 

@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc02c4eb21c13426b9e6369f9209e529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 350
+  baseSpeed: 800
   canvas: {fileID: 8086023812971717533}
   skillCheckSquare: {fileID: 7518007786471635970}
 --- !u!61 &5351082448761669537

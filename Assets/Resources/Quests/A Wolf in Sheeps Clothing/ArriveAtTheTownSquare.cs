@@ -9,7 +9,7 @@ public class ArriveAtTheTownSquare : QuestStep
     private bool isTownSquareReached;
     private PlayerControls inputActions;
     private GameObject wayPoint;
-    private BoxCollider wayPointCollider;
+    private SpriteRenderer spriteRenderer;
     
     private string dialogueKnotName = "town_square";
 
@@ -30,12 +30,21 @@ public class ArriveAtTheTownSquare : QuestStep
 			return;
 		}
 		
-		wayPointCollider = wayPoint.GetComponent<BoxCollider>();
+		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = true;
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
 		
 		GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
 		GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+	}
+	
+	private void Update()
+	{
+		if(!isTownSquareReached && isPlayerInRange)
+		{
+			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
 	}
 
 	private void OnDestroy()
@@ -56,6 +65,7 @@ public class ArriveAtTheTownSquare : QuestStep
 		if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
 		{
 			isTownSquareReached = true;
+			spriteRenderer.enabled = false;
 		}
 	}
 	
@@ -64,12 +74,11 @@ public class ArriveAtTheTownSquare : QuestStep
 		if(isTownSquareReached)
 		{
 			UpdateState();
-			CompleteStep();
-			
 			if(wayPoint != null)
 			{
 				Destroy(wayPoint);
 			}
+			CompleteStep();
 		}
 	}
 

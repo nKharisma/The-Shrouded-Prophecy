@@ -15,7 +15,7 @@ public class GameEventsManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }else {
-            Destroy(this);
+            Destroy(gameObject);
         }
         
         questEvents = new QuestEvents();

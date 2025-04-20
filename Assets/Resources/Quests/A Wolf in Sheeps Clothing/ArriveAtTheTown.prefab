@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541063555833649181}
   - component: {fileID: 2197561628292338292}
+  - component: {fileID: 3755303800272075157}
   m_Layer: 0
   m_Name: ArriveAtTheTown
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7074975006721418314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.15559654, y: -0.022102969, z: 0.06026584, w: -0.98573285}
+  m_LocalPosition: {x: -89.41, y: 4.039, z: 86.325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.024, y: 1.496, z: -6.76}
 --- !u!114 &2197561628292338292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,3 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee54b51f03db2014681225f48c679c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3755303800272075157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074975006721418314}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.641929, y: 4.5640492, z: 1}
+  m_Center: {x: -0.47523132, y: 1.7820306, z: -0.00000030268322}

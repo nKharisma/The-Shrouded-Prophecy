@@ -25,7 +25,7 @@ public class CompanionManager : MonoBehaviour
     void Awake()
     {
         if (instance == null){
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             instance = this;
         }else {
             Destroy(gameObject);

@@ -37,7 +37,7 @@ public class PlayerManager : CharacterManager //inherit from CharacterManager
     
     public void SavePlayerData(ref CharacterSaveData saveData)
     {
-        saveData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //saveData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
         saveData.yPosition = transform.position.y;
         saveData.xPosition = transform.position.x;
         saveData.zPosition = transform.position.z;

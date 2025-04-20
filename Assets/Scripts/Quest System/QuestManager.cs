@@ -206,8 +206,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("Saved quest data: " + questData.state);
             
             if (quest.questState == QuestState.In_Progress || 
-                quest.questState == QuestState.Can_Complete || 
-                quest.questState == QuestState.Completed)
+                quest.questState == QuestState.Can_Complete)
             {
                 saveData.questName = quest.questInfoSO.displayName; // Ensure questName is assigned correctly
             }

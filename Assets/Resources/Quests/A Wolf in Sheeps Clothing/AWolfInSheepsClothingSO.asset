@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <questID>k__BackingField: AWolfInSheepsClothingSO
   displayName: A Wolf in Sheep's Clothing
-  requiredTrustLevel: 0
-  requiredPreviousQuests: []
+  requiredTrustLevel: 10
+  requiredPreviousQuests:
+  - {fileID: 11400000, guid: b45c6a6996494d5488cb96c9a029ce29, type: 2}
   questStepsPrefabs:
   - {fileID: 4084367633436012585, guid: 536c0184c04a3ec419c77fd2d05c625e, type: 3}
   - {fileID: 1416230715379359401, guid: 382a185f7ef517a419d7fa3cd6dbdfd1, type: 3}
@@ -25,5 +26,5 @@ MonoBehaviour:
   - {fileID: 7074975006721418314, guid: e80c05f326a247d43868e6be0ed211e3, type: 3}
   - {fileID: 906242738273631303, guid: baa1368189f1d364b8de70f584e51950, type: 3}
   - {fileID: 7110800779099136716, guid: 603c5027a963fa94d9404c0ade4a7513, type: 3}
-  - {fileID: 3580535748911458407, guid: cbbd642f6ea941d4696a6d4390f2d239, type: 3}
+  - {fileID: 309746662704033857, guid: aac335e496270bf4c94d5052f99641e3, type: 3}
   rewardTrustLevel: 10

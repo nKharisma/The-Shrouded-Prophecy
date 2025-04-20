@@ -11,6 +11,14 @@ public class PlayerEvents
         }
     }
     
+    public event Action<int> onTrustLost;
+    public void TrustLost(int trustAmount)
+    {
+        if(onTrustLost != null)
+        {
+            onTrustLost(trustAmount);
+        }
+    }
     public event Action<int> onPlayerTrustChange;
     public void PlayerTrustMeterChange(int trustAmount)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -84,6 +85,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
                 autoTriggerDialogue = false;
+                this.gameObject.SetActive(false);
             }
         }
     }

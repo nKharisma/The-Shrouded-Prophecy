@@ -16,6 +16,8 @@ using UnityEngine;
         public string questName;
         public List<QuestDataEntry> questDataList;
         
+        public int trustAmount;
+        
         [Header("User Stats")]
         public float secondsPlayed;
         

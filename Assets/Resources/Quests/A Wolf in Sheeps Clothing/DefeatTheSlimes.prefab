@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4285720712447612681}
   - component: {fileID: 6912180875831913787}
+  - component: {fileID: 928644500997355041}
   m_Layer: 0
   m_Name: DefeatTheSlimes
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3590525057357094636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.81, y: 16.38, z: 30.68}
+  m_LocalRotation: {x: -0, y: 0.2440743, z: -0, w: 0.96975654}
+  m_LocalPosition: {x: -16.804, y: 17.928362, z: 31.158}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 28.254, z: 0}
 --- !u!114 &6912180875831913787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,3 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918e799c5a1123c40887b6f5605639eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &928644500997355041
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590525057357094636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

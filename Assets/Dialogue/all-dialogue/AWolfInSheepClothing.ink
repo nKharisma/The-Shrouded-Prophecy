@@ -17,10 +17,9 @@
 "You're still here? Are you having second thoughts, or do you just like my company?"
  * [I'm ready to go.]
     "Good. Now, get going and don't fail."
-    //~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
     -> DONE
  * [Prepare first] -> DONE
- //figure out how to get LeaveNowOrLater to play in a loop until player decides to leave
+ 
 === talk_to_companion ===
 <i>You approach the frightened figure just as a slime oozes closer in the distance.</i>
 <i>Their eyes widen, and a soft glow pulses from their hands.</i>
@@ -29,21 +28,16 @@
 * [Are you okay?] 
 "N-No! I mean… I’m not hurt, but—I can’t fight these things!"
 "I can heal. That’s all I’ve ever been good at. I tried to push them away with my magic, but it just—won’t work like that..."
-
-    * * [You have magic—use it!] 
-        "It’s not like that! Healing doesn’t hurt. I’d have to twist it… and I’m scared of what might happen if I try."
-    -> after_second_choice
     * * [It’s okay. Stay behind me.]
         "You’d really do that...? Just—be careful, okay."
-    -> after_second_choice
-=== after_second_choice ===
+        
         * * * [What are you doing out here?]
             "I was just trying to gather herbs. This area’s usually quiet—I didn’t expect slimes!"
             "I thought… maybe if I found something strong enough, I could help people back in the village. But I didn't think it through..."
 
             * * * * [Stay calm. I’ll take care of it.]
                 "You’re serious? Okay—okay. I’ll try not to panic."
-    -> slime_battle
+    -> DONE
 
 
 === slime_battle ===
@@ -54,26 +48,30 @@
 -> slime_battle_result
 
 = slime_battle_result
-- result == 1:
+<i>The companion watches you nervously, holding their breath...</i>
+
+{result == 1:
     "You did it! Oh, thank you, thank you! I thought I was done for!"
     <i>The companion dusts themselves off, still shaky but clearly relieved.</i>
     "You’re a traveler, right? You’re heading to the town? I… I’d feel a lot safer if I traveled with you."
     "I tried to be brave. I really did. But… healing doesn’t stop monsters, does it?"
 <i>She offers a small, apologetic smile, but there's a flicker of resolve beneath it.</i>
 "Still... I want to help. I don’t know how yet, but if you’ll have me, I’ll learn. You seem experienced with these things."
-    + [You don't need to fight. Just be there.]
-    //trust gained
-    ~ nice = true
-    -> DONE
-    + [If you're going to follow me, you'll have to toughen up.]
-    //trust lost
-    ~ nice = false
-    -> DONE
-- else:
+-> continue_choices
+- else:  
     "No! They’re getting closer—please, you have to try again!"
-    "The result is: {result}"
     -> slime_battle
 }
+
+= continue_choices 
+ * [You don't need to fight. Just be there.]
+    ~ TrustGained("5")
+    ~ nice = true
+    -> DONE
+    * [If you're going to follow me, you'll have to toughen up.]
+    ~ TrustLost("5")
+    ~ nice = false
+    -> DONE
 
 === recruit_mira ===
 {nice == true:
@@ -100,28 +98,31 @@
 <i>Her steps slow slightly.</i>
 "Turns out, bravery’s easier to talk about when you’re not surrounded by slimes."
 * [You were brave to try. That means something.]
-//trust gained 
 "Thank you… not many people see it that way. They just see recklessness. But I just wanted to prove I could help."
 <i>She looks down at her hands, then back at you with a steadier gaze.</i>
 "I think… you might really get it. That means a lot."
     ~ nice = true
-->town_leave
+    ~ TrustGained("10")
+->DONE
 * [Next time, tell someone. Bravery doesn't mean going alone.]
 //nothing
 <i>She nodes slowly, taking the words in.</i>
 "You're right, I just...didn't want to be seen as weak."
-->town_leave
+~ TrustGained("5")
+~ nice = true
+->DONE
 * [So you ignored the plan and almost got yourself killed?]
 // trust down
 "...I didn’t mean to make things worse. I thought I could handle it."
 <i>She folds her arms, the glow in her fingers dimmer now.</i>
 "I just… wanted to do something right for once."
 <i>Her face tightens. She turns away slightly.</i>
+~ TrustLost("5")
 ~ nice = false
-->town_leave
+->DONE
 
-= town_leave
-As you both get closer to the town, {nice: comfortable} {not nice: uncomfortable} silence.
+=== town_leave ===
+As you both get closer to the town, {nice == true: comfortable} {nice == false: uncomfortable} silence.
 <i>Through the fading mist, the first signs of the town come into view—wooden rooftops, flickering lanterns, the faint sound of music.</i>
 //transition to town
 ->DONE
@@ -143,14 +144,14 @@ Mira:
 }
 ->DONE
 
-=== town_sqaure ===
+=== town_square ===
 <i>You and Mira step into the town center. It’s quiet, but full of life—the wind blows gently, a merchant arranges jars of preserved herbs, and someone is fixing a broken sign with bits of scrap metal.</i>
 
 "This is the Town Square. We don’t have monuments or fancy houses, but... it’s ours."
 "Most of this was built from the ruins outside the city. Broken things they threw away—we gave them purpose again."
 * [Looks like you’re doing more than surviving.]
     "We try. Hope’s hard to come by out here, but we find ways to hold onto it."
-    //trust up
+    ~ TrustGained("5")
     -> continue
 * [Doesn’t the city get suspicious when all this goes up?]
     Mira: "They don’t know. Or maybe they don’t care enough to look this far out. We’re not supposed to exist."
@@ -158,7 +159,7 @@ Mira:
     -> continue
 * [This place is a ticking time bomb. The city <b>will</b> find it.]
     Mira: "...Maybe. But until they do, we’ll keep helping each other. That’s all we can do."
-    //trust down
+    ~ TrustLost("5")
     -> continue
 = continue
 <i>She walks toward the makeshift stands in the center, her fingers brushing its worn wood.</i>
@@ -190,7 +191,7 @@ Mira:
 * [You do all the healing here?]
     Mira: "I’m one of a few. I help where I can, but it’s not easy. No steady supplies. No proper tools. Some days, it’s just hope and whatever nature gives us."
 ** [You’re resourceful. That takes more strength than most.]
-    //trust up
+    ~ TrustGained("5")
 <i>She looks away, but a quiet pride flickers across her face.</i>
 "Thanks. I try."
 *** [So this is why you went into the swamp alone?]
@@ -236,5 +237,6 @@ You were sent to investigate a threat, but what if this is what they meant?<i>
 "Be careful, Mira. This town can’t afford to lose people who care about it."
 <i>There’s no threat in his voice—just gravity. A warning wrapped in concern.</i>
 "Come on. If Aspen’s still out there, we need to find him—before something else does. Or worse…the city."
+~ CompleteQuest("AWolfInSheepsClothingSO")  
 ->DONE
 

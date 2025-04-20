@@ -12,6 +12,8 @@ public class InkExternalFunctions
         story.BindExternalFunction("AdvanceQuest", (string questID) => AdvanceQuest(questID));
         story.BindExternalFunction("CompleteQuest", (string questID) => CompleteQuest(questID));
         story.BindExternalFunction("LoadSceneInGame", (string sceneIndex, string x, string y, string z) => LoadSceneInGame(sceneIndex, x, y, z));
+        story.BindExternalFunction("TrustGained", (string trustAmount) => TrustGained(trustAmount));
+        story.BindExternalFunction("TrustLost", (string trustAmount) => TrustLost(trustAmount));
     }
     
     public void Unbind(Story story)
@@ -46,5 +48,17 @@ public class InkExternalFunctions
         
         Vector3 position = new Vector3(xPos, yPos, zPos);
         WorldSaveGameManager.instance.StartCoroutine(WorldSaveGameManager.instance.LoadSceneInGame(index, position));
+    }
+    
+    private void TrustGained(string trustAmount)
+    {
+        int amount = int.Parse(trustAmount);
+        GameEventsManager.instance.playerEvents.TrustGained(amount);
+    }
+    
+    private void TrustLost(string trustAmount)
+    {
+        int amount = int.Parse(trustAmount);
+        GameEventsManager.instance.playerEvents.TrustLost(amount);
     }
 }

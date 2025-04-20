@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class TravelToTheTown : QuestStep
 {
     private Quest quest;
@@ -9,10 +10,9 @@ public class TravelToTheTown : QuestStep
     private bool hasCompletedTravelToTown;
     private PlayerControls inputActions;
     private GameObject miraNPC;
-    private BoxCollider miraCollider;
     private GameObject visualIndicatorObject;
-    //private SpriteRenderer visualIndicator;
-    private string dialogueKnotName = "travel_to_town";
+    private SpriteRenderer visualIndicator;
+    private string dialogueKnotName = "town_leave";
     
     private void Awake() {
         isPlayerInRange = false;
@@ -28,15 +28,8 @@ public class TravelToTheTown : QuestStep
             Debug.Log("Mira NPC not found");
         }
         
-        miraCollider = miraNPC.GetComponent<BoxCollider>();
-        if(miraCollider == null)
-        {
-            Debug.Log("Mira NPC collider not found");
-        }
-        
-        miraCollider.enabled = true;
         visualIndicatorObject = miraNPC.transform.GetChild(0).gameObject;
-        //visualIndicator = visualIndicatorObject.GetComponent<SpriteRenderer>();
+        visualIndicator = visualIndicatorObject.GetComponent<SpriteRenderer>();
     
         quest = QuestManager.instance.GetQuestById(base.questID);
         
@@ -60,35 +53,32 @@ public class TravelToTheTown : QuestStep
                 DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
             }
 		}
-		
-		if(quest.currentQuestStepIndex == base.currentStepIndex)
-        {
-            visualIndicatorObject.SetActive(true);
-        }
 	}
 	
 	private void OnDialogueStart()
 	{
-	    if(!hasCompletedTravelToTown)
+	    if(hasCompletedTravelToTown)
         {
             return;
         }
         
         if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
         {
-            visualIndicatorObject.SetActive(false);
+            visualIndicator.enabled = false;
             hasCompletedTravelToTown = true;
+            Debug.Log("Player has traveled to the town");
         }
 	}
 	
 	private void OnDialogueComplete()
 	{
         if(hasCompletedTravelToTown){
-        miraCollider.enabled = false;
+        //miraCollider.enabled = false;
         UpdateState();
         //here to transfer the player to the town
+        Debug.Log("Player has completed the travel to the town");
         CompleteStep();
-        WorldSaveGameManager.instance.LoadSceneInGame(3, new Vector3(-90.4f, 5.16f, 79.31f));
+        StartCoroutine(WorldSaveGameManager.instance.LoadSceneInGame(3, new Vector3(-90.4f, 5.16f, 79.31f)));
         }
 	}
 

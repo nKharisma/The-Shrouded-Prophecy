@@ -10,11 +10,24 @@ public class CompanionFollowAI : MonoBehaviour
     public float distanceFromPlayer = 2f;
 
     private Rigidbody2D rigidBody;
-
+    private Animator companionAnimator;
+    
+    private PlayerInputManager inputManager;
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        companionAnimator = GetComponent<Animator>();
+        inputManager = PlayerInputManager.instance;
+    }
+    
+    void Update()
+    {
+        if(companionAnimator != null)
+        {
+            companionAnimator.SetFloat("Horizontal", inputManager.horizontal);
+            companionAnimator.SetFloat("Vertical", inputManager.vertical);
+        }
     }
 
     void FixedUpdate()

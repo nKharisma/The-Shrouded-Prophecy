@@ -55,7 +55,7 @@ public class QuestPoint : MonoBehaviour
     }
     
     private void OnDestroy() {
-        //GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+        GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         inputActions.Disable();
     }
     
@@ -95,7 +95,15 @@ public class QuestPoint : MonoBehaviour
             currentQuestState = quest.questState;
             Debug.Log("Quest State Changed: " + quest.questState + " for Quest: " + questID);
             questIcon.SetState(currentQuestState, startPoint, completePoint);
+            if (currentQuestState == QuestState.Completed)
+        {
+            //Debug.Log("Deactivating quest point for Quest ID: " + questID);
+            SetQuestPointActive(false);
+        }
+        else
+        {
             ManageQuestPointState();
+        }
         }
     }
     
@@ -130,5 +138,7 @@ public class QuestPoint : MonoBehaviour
     {
         this.gameObject.GetComponent<BoxCollider>().enabled = isActive;
         questIcon.gameObject.SetActive(isActive);
+        
+        this.gameObject.SetActive(isActive);
     }
 }

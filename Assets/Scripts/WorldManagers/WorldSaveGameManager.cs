@@ -218,6 +218,7 @@ public class WorldSaveGameManager : MonoBehaviour
         
         player.SavePlayerData(ref currentSaveData); //save the player data
         QuestManager.instance.SaveQuest(ref currentSaveData); //save the quest data
+        PlayerTrustManager.instance.SaveTrustData(ref currentSaveData);
         
         Debug.Log(currentSaveData.questDataList.Count);
         
@@ -281,9 +282,12 @@ public class WorldSaveGameManager : MonoBehaviour
     saveGameFileWriter.saveFileDirectoryPath = Application.persistentDataPath; // Set the save file directory path
     saveGameFileWriter.saveFileName = saveFileName; // Set the save file name
 
+    //currentSaveData.sceneIndex = SceneManager.GetActiveScene().buildIndex; // Get the current scene index
+
     player.SavePlayerData(ref currentSaveData); // Save the player data
     QuestManager.instance.SaveQuest(ref currentSaveData); // Save the quest data
-
+    PlayerTrustManager.instance.SaveTrustData(ref currentSaveData); // Save the trust data
+    
     saveGameFileWriter.CreateNewSaveFile(currentSaveData); // Create a new save file
     Debug.Log("Game auto-saved.");
     }
@@ -328,6 +332,7 @@ public class WorldSaveGameManager : MonoBehaviour
     
     if (!isNewGame)
         {
+            PlayerTrustManager.instance.LoadTrustData(ref currentSaveData);
             foreach (Quest quest in QuestManager.instance.questMap.Values) // for each quest in the quest map
             {
                 if (currentSaveData.questName == null)
@@ -366,6 +371,8 @@ public class WorldSaveGameManager : MonoBehaviour
     
     public IEnumerator LoadSceneInGame(int sceneIndex, Vector3 spawnPosition)
     {
+        currentSaveData.sceneIndex = sceneIndex;
+    
         AutoSave();
     
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex); // Load the world scene asynchronously
@@ -374,17 +381,16 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             yield return null; // return null
         }
-        Debug.Log(player.transform.position);
+        //Debug.Log(player.transform.position);
         
         //player.transform.position = spawnPosition;
         
-        Debug.Log(spawnPosition);
+        //Debug.Log(spawnPosition);
         if (player == null)
         {
             Debug.LogError("player is null");
             yield break;
-        }
-        
+        }        
         /*
         if(QuestManager.instance != null)
         {
@@ -411,7 +417,7 @@ public class WorldSaveGameManager : MonoBehaviour
                     continue;
                 }
             }
-        }    */    
+        }*/    
         AutoSave();
     }
     public string WhichSaveFile(SaveSlot characterSlot) //This function returns the save file name

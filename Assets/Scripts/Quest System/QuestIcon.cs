@@ -20,7 +20,7 @@ public class QuestIcon : MonoBehaviour
         switch(newState)
         {
             case QuestState.Requirements_Not_Met:
-                requirementsNotMetIcon.SetActive(true);
+                requirementsNotMetIcon.SetActive(false);
                 break;
             case QuestState.Can_Start:
                 if(startPoint)

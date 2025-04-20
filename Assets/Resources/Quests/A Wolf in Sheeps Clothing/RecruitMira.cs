@@ -14,9 +14,6 @@ public class RecruitMira : QuestStep
     private PlayerControls inputActions;
     private bool hasCompletedRecruitMira;
 
-    [Header("Skill Check")]
-    [SerializeField] private SkillCheckSetup skillCheckSetup; // Reference to the SkillCheckSetup script
-
     private void Awake() 
     {
         isPlayerInRange = false;
@@ -27,7 +24,7 @@ public class RecruitMira : QuestStep
 
     private void Start() 
     {
-        miraNPC = GameObject.FindWithTag("Mira");
+        miraNPC = GameObject.FindWithTag("Healer");
         if(miraNPC == null)
         {
             Debug.Log("Mira NPC not found");
@@ -56,6 +53,8 @@ public class RecruitMira : QuestStep
         
         if(quest.currentQuestStepIndex == base.currentStepIndex)
         {
+            //Debug.Log("Current step index: " + base.currentStepIndex);
+            //Debug.Log("Quest step index: " + quest.currentQuestStepIndex);
             visualIndicatorObject.SetActive(true);
         }
     }
@@ -76,7 +75,7 @@ public class RecruitMira : QuestStep
         
         if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
         {
-            visualIndicatorObject.SetActive(false);
+            visualIndicator.enabled = false;
             hasCompletedRecruitMira = true;
         }
     }
@@ -86,6 +85,7 @@ public class RecruitMira : QuestStep
         if(hasCompletedRecruitMira)
         {
             CompanionManager.instance.RecruitCompanion("Mira");
+            visualIndicator.enabled = true;
             UpdateState();
             CompleteStep();
         }

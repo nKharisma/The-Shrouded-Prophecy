@@ -3,8 +3,9 @@ EXTERNAL AdvanceQuest(questID)
 EXTERNAL CompleteQuest(questID)
 EXTERNAL playSkillCheckUI()
 EXTERNAL LoadSceneInGame(sceneIndex, x, y, z)
+EXTERNAL TrustGained(trustAmount)
+EXTERNAL TrustLost(trustAmount)
 
-VAR FIresult = 0
 VAR result = 0
 VAR passedTraining = false
 VAR captainDuelPassed = false

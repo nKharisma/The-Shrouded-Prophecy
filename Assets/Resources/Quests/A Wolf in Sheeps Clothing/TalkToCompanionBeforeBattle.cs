@@ -26,28 +26,20 @@ public class TalkToCompanionBeforeBattle : QuestStep
     
     private void Start()
     {
-         GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
-        GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
-    }
-
-    private void OnEnable()
-    {
-        // Subscribe to the sceneLoaded event
-        SceneManager.sceneLoaded += OnSceneLoaded;
         GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDisable()
-    {
-        // Unsubscribe from the sceneLoaded event
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+	private void OnDestroy()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
         GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
         GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
         inputActions.Disable();
-    }
+	}
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Initialize();
     }
@@ -106,10 +98,14 @@ public class TalkToCompanionBeforeBattle : QuestStep
     {
         if (hasTalkedToCompanion)
         {
-            visualIndicator.enabled = true;
-            visualIndicator.sprite = questQuestionMark;
-            visualIndicator.color = Color.gray;
-            Debug.Log("Dialogue complete. Player has talked to the companion.");
+            if (visualIndicator != null)
+            {
+                visualIndicator.sprite = questQuestionMark;
+                visualIndicator.enabled = true;
+            }
+            //Debug.Log("Dialogue complete. Player has talked to the companion.");
+            
+            
             CompleteStep();
         }
     }
@@ -134,7 +130,7 @@ public class TalkToCompanionBeforeBattle : QuestStep
     {
         string state = hasTalkedToCompanion ? "true" : "false";
         string status = state == "true" ? "You have talked to the stranger." : "Talk to the stranger.";
-        ChangeState(state, status);
+        ChangeState("", status);
     }
 
     protected override void SetQuestStepState(string state)

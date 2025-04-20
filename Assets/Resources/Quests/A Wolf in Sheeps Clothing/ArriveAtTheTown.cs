@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(BoxCollider))]
 public class ArriveAtTheTown : QuestStep
 {
     private Quest quest;
@@ -9,7 +11,7 @@ public class ArriveAtTheTown : QuestStep
     private bool hasArrivedAtTown;
     private PlayerControls inputActions;
     private GameObject wayPoint;
-    private BoxCollider wayPointCollider;
+    private SpriteRenderer spriteRenderer;
     
     private string dialogueKnotName = "town_arrival";
 
@@ -22,6 +24,26 @@ public class ArriveAtTheTown : QuestStep
 	}
 
 	private void Start()
+    {
+        GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
+        GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+	private void OnDestroy()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
+        GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
+        inputActions.Disable();
+	}
+
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Initialize();
+    }
+    
+    private void Initialize()
 	{
 		wayPoint = GameObject.Find("TownArrivalCheckpoint");
 		if (wayPoint == null)
@@ -30,24 +52,23 @@ public class ArriveAtTheTown : QuestStep
 			return;
 		}
 		
-		wayPointCollider = wayPoint.GetComponent<BoxCollider>();
+		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = true;
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
-		
-		GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
-		GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
 	}
 
-	private void OnDestroy()
+	private void Update()
 	{
-		GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
-		GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
-		inputActions.Disable();
+		if(!hasArrivedAtTown && isPlayerInRange)
+		{
+			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
 	}
 	
 	private void OnDialogueStart()
 	{
-		if(hasArrivedAtTown || !isPlayerInRange)
+		if(hasArrivedAtTown)
 		{
 			return;
 		}
@@ -56,6 +77,8 @@ public class ArriveAtTheTown : QuestStep
 		if(DialogueManager.GetInstance().currentKnotName == dialogueKnotName)
 		{
 			hasArrivedAtTown = true;
+			spriteRenderer.enabled = false;
+			Debug.Log("Arrived at the town.");
 		}
 	}
 	
@@ -64,12 +87,11 @@ public class ArriveAtTheTown : QuestStep
 		if(hasArrivedAtTown)
 		{
 			UpdateState();
-			CompleteStep();
-			
 			if(wayPoint != null)
 			{
 				Destroy(wayPoint);
 			}
+			CompleteStep();
 		}
 	}
 
