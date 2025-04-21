@@ -11,6 +11,10 @@ TagManager:
   - Healer
   - Slime
   - ElderIden
+  - Enemy
+  - TDSkillCheck
+  - WaypointCanvas
+  - PixelShader
   layers:
   - Default
   - TransparentFX

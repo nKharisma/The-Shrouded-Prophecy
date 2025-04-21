@@ -14,6 +14,7 @@ public class InkExternalFunctions
         story.BindExternalFunction("LoadSceneInGame", (string sceneIndex, string x, string y, string z) => LoadSceneInGame(sceneIndex, x, y, z));
         story.BindExternalFunction("TrustGained", (string trustAmount) => TrustGained(trustAmount));
         story.BindExternalFunction("TrustLost", (string trustAmount) => TrustLost(trustAmount));
+        story.BindExternalFunction("ToggleNextWaypoint", (string index) => ToggleNextWaypoint(index));
     }
     
     public void Unbind(Story story)
@@ -60,5 +61,11 @@ public class InkExternalFunctions
     {
         int amount = int.Parse(trustAmount);
         GameEventsManager.instance.playerEvents.TrustLost(amount);
+    }
+
+    private void ToggleNextWaypoint(string index)
+    {
+        int myIndex = int.Parse(index);
+        GameEventsManager.instance.playerEvents.ToggleNextWaypoint(myIndex);
     }
 }

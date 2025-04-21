@@ -5,6 +5,7 @@ EXTERNAL playSkillCheckUI()
 EXTERNAL LoadSceneInGame(sceneIndex, x, y, z)
 EXTERNAL TrustGained(trustAmount)
 EXTERNAL TrustLost(trustAmount)
+EXTERNAL ToggleNextWaypoint(index)
 
 VAR result = 0
 VAR passedTraining = false
