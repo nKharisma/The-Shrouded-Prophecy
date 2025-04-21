@@ -89219,6 +89219,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1266717344}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1266717346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4660339309285315939, guid: 2e9ddfb237db1495589228d68eee30b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1266717344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a45a2f01a80d4dc6a833bdb96f4643b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1267237798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101273,6 +101285,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2673798063785943956, guid: 3facae8111451b944b19f16c7933cc5a,
+        type: 3}
+      propertyPath: powerUpManager
+      value: 
+      objectReference: {fileID: 1266717346}
     - target: {fileID: -2673798063785943956, guid: 3facae8111451b944b19f16c7933cc5a,
         type: 3}
       propertyPath: playerTransform
@@ -147742,5 +147759,5 @@ SceneRoots:
   - {fileID: 1975413815}
   - {fileID: 2137295291}
   - {fileID: 960971886}
-  - {fileID: 1775426244}
   - {fileID: 153083614}
+  - {fileID: 1775426244}

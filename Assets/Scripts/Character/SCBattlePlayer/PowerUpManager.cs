@@ -14,13 +14,14 @@ public class PowerUpManager : MonoBehaviour
     private PlayerControls inputActions;
 
     private int currentPowerUp = 0;
-    private int disabled = 0;
+    [SerializeField] private int disabled = 1;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         UpdatePUSelection();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -47,15 +48,6 @@ public class PowerUpManager : MonoBehaviour
             }
         }
 
-        else if (disabled == 1)
-        {
-            for (int i = 0; i < powerUpImages.Length; i++)
-            {
-                powerUpImages[i].sprite = greyPowerUpSprites[i];
-            }
-
-            powerUpOutlines[currentPowerUp].enabled = false;
-        }
     }
 
     void ChangePU(int direction)
@@ -74,6 +66,7 @@ public class PowerUpManager : MonoBehaviour
         }
     }
     
+    /*
     IEnumerator DiableEnemey(float time)
     {
         foreach(GameObject enemy in enemies)
@@ -95,6 +88,24 @@ public class PowerUpManager : MonoBehaviour
                 script.enabled = true;
             }
         }
+    }*/
+    
+        public void EnablePowerUp(CompanionManager.PowerType powerType)
+    {
+        switch (powerType)
+        {
+            case CompanionManager.PowerType.HealBoost:
+                powerUpImages[0].sprite = greyPowerUpSprites[0]; // Enable the HealBoost power-up
+                break;
+            case CompanionManager.PowerType.ImmunityBoost:
+                powerUpImages[1].sprite = greyPowerUpSprites[1]; // Enable the ImmunityBoost power-up
+                break;
+            default:
+                Debug.LogWarning("Unknown power type.");
+                break;
+        }
+    
+        Debug.Log($"Power-up for {powerType} enabled.");
     }
 
     void ActivatePU(int index)
@@ -108,9 +119,6 @@ public class PowerUpManager : MonoBehaviour
                 StartCoroutine(healthManager.IsImmuned(7f));
                 break;
             case 2:
-                StartCoroutine(DiableEnemey(7f));
-                break;
-            case 3:
 
                 break;
         }

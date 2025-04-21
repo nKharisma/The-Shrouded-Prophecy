@@ -14,6 +14,8 @@ public class CompanionManager : MonoBehaviour
         public PowerType powerType;
         public bool isRecruited;
     }
+    
+    public CompanionData currentlyEquippedCompanion;
 
     public enum PowerType { HealBoost, ImmunityBoost, EnemyDisableBoost }
 
@@ -32,36 +34,61 @@ public class CompanionManager : MonoBehaviour
         }
     }
 
-    public void RecruitCompanion(string name)
+	void Start()
+	{
+		EnableAllRecruitedPowerUps();
+	}
+
+	public void RecruitCompanion(string name)
+{
+    CompanionData comp = allCompanions.Find(c => c.companionName == name);
+    if (comp != null && !comp.isRecruited)
     {
-        CompanionData comp = allCompanions.Find(c => c.companionName == name);
-        if (comp != null && !comp.isRecruited)
-        {
-            comp.isRecruited = true;
-            //comp.companionObject.SetActive(true);
-            
+        comp.isRecruited = true;
+
+        // Enable companion's follow AI if applicable
         CompanionFollowAI followAI = comp.companionObject.GetComponent<CompanionFollowAI>();
-            if (followAI != null)
-            {
-                //followAI.player = playerTransform;
-                followAI.enabled = true;
-            }else if(followAI == null){
-                //followAI.player = playerTransform;
-                followAI.enabled = true;
-            }
-            Debug.Log($"{comp.companionName} has joined!");
+        if (followAI != null)
+        {
+            followAI.enabled = true;
+        }
+
+        Debug.Log($"{comp.companionName} has joined!");
+
+        // Check if the PowerUpManager exists and enable the power-up
+        if (powerUpManager != null)
+        {
+            Debug.Log($"Enabling power-up for {comp.powerType}.");
+            powerUpManager.EnablePowerUp(comp.powerType);
         }
     }
-
-    public List<PowerType> GetRecruitedPowers()
+    else if (comp != null && comp.isRecruited)
     {
-        List<PowerType> powers = new List<PowerType>();
-        foreach (var comp in allCompanions)
+        Debug.LogWarning($"Companion {name} is already recruited.");
+    }
+    else
+    {
+        Debug.LogWarning($"Companion {name} not found.");
+    }
+}
+
+
+    public void EnableAllRecruitedPowerUps()
+{
+    if (powerUpManager == null)
+    {
+        Debug.Log("PowerUpManager is not assigned.");
+        return;
+    }
+
+    foreach (var comp in allCompanions)
+    {
+        if (comp.isRecruited)
         {
-            if (comp.isRecruited)
-                powers.Add(comp.powerType);
+            Debug.Log($"Enabling power-up for {comp.powerType}.");
+            powerUpManager.EnablePowerUp(comp.powerType);
         }
-        return powers;
+    }
     }
 }
 

@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e446ac5071cb74aeab0e1244c8392504, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46fa565565fa142e49ee1d326fde98fc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -430,13 +430,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scPlayer: {fileID: 2902308306443295384}
   powerUpImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1292298302154237029}
+  - {fileID: 5992775533608094821}
   greyPowerUpSprites:
-  - {fileID: 21300000, guid: 46fa565565fa142e49ee1d326fde98fc, type: 3}
-  - {fileID: 21300000, guid: f8a8cfdba98b74ab6a740959918dad6a, type: 3}
-  - {fileID: 21300000, guid: 1dccc02cb8c6d4191833563f120b2800, type: 3}
+  - {fileID: 21300000, guid: e446ac5071cb74aeab0e1244c8392504, type: 3}
+  - {fileID: 21300000, guid: cde65fec7eafb4b25b61cb0707434326, type: 3}
   powerUpOutlines:
   - {fileID: 0}
   - {fileID: 0}
@@ -1401,7 +1399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cde65fec7eafb4b25b61cb0707434326, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8a8cfdba98b74ab6a740959918dad6a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2012,7 +2010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5092557722565915920
 RectTransform:
   m_ObjectHideFlags: 0
