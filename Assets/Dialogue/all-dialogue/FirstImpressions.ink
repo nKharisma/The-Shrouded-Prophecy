@@ -125,7 +125,8 @@ Are you prepared?
 <i>The Captain studies you, gauging your performance.</i>
 
 {result == 1:  
-    ~ captainDuelPassed = true  
+    ~ captainDuelPassed = true
+    ~ ToggleNextWaypoint("4")
     <b>The Captain steps back, lowering his weapon back down to his side.</b>  
     "Not bad. You might actually survive out there. Don't get too cocky, though."  
     -> DONE  

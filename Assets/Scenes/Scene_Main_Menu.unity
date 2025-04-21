@@ -3998,7 +3998,6 @@ MonoBehaviour:
   okButton: {fileID: 1311171023}
   deleteSlotPopUp: {fileID: 270322165}
   currentSaveSlot: 6
-  deleteCharacterSlot: 0
 --- !u!1 &1549103995
 GameObject:
   m_ObjectHideFlags: 0
