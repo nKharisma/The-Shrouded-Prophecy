@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuestLogToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c7b29c7-b869-473d-9ceb-778091bb8f0f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SelectPowerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""624a7e7b-127f-4458-89c2-04c1a1dc3569"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuestLogToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -289,6 +309,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_LeftPowerUp = m_PlayerMovement.FindAction("LeftPowerUp", throwIfNotFound: true);
         m_PlayerMovement_RightPowerUp = m_PlayerMovement.FindAction("RightPowerUp", throwIfNotFound: true);
         m_PlayerMovement_SelectPowerUp = m_PlayerMovement.FindAction("SelectPowerUp", throwIfNotFound: true);
+        m_PlayerMovement_QuestLogToggle = m_PlayerMovement.FindAction("QuestLogToggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Delete = m_UI.FindAction("Delete", throwIfNotFound: true);
@@ -365,6 +386,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_LeftPowerUp;
     private readonly InputAction m_PlayerMovement_RightPowerUp;
     private readonly InputAction m_PlayerMovement_SelectPowerUp;
+    private readonly InputAction m_PlayerMovement_QuestLogToggle;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -375,6 +397,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @LeftPowerUp => m_Wrapper.m_PlayerMovement_LeftPowerUp;
         public InputAction @RightPowerUp => m_Wrapper.m_PlayerMovement_RightPowerUp;
         public InputAction @SelectPowerUp => m_Wrapper.m_PlayerMovement_SelectPowerUp;
+        public InputAction @QuestLogToggle => m_Wrapper.m_PlayerMovement_QuestLogToggle;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,6 +425,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SelectPowerUp.started += instance.OnSelectPowerUp;
             @SelectPowerUp.performed += instance.OnSelectPowerUp;
             @SelectPowerUp.canceled += instance.OnSelectPowerUp;
+            @QuestLogToggle.started += instance.OnQuestLogToggle;
+            @QuestLogToggle.performed += instance.OnQuestLogToggle;
+            @QuestLogToggle.canceled += instance.OnQuestLogToggle;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -424,6 +450,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SelectPowerUp.started -= instance.OnSelectPowerUp;
             @SelectPowerUp.performed -= instance.OnSelectPowerUp;
             @SelectPowerUp.canceled -= instance.OnSelectPowerUp;
+            @QuestLogToggle.started -= instance.OnQuestLogToggle;
+            @QuestLogToggle.performed -= instance.OnQuestLogToggle;
+            @QuestLogToggle.canceled -= instance.OnQuestLogToggle;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -495,6 +524,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLeftPowerUp(InputAction.CallbackContext context);
         void OnRightPowerUp(InputAction.CallbackContext context);
         void OnSelectPowerUp(InputAction.CallbackContext context);
+        void OnQuestLogToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

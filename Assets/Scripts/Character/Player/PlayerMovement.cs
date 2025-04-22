@@ -19,6 +19,8 @@ public class PlayerMovement : CharacterMovement
 
     public LayerMask terrainLayer;
     private Animator animator;
+
+    private bool isMovementEnabled = true;
     protected override void Awake()
     {
         base.Awake();
@@ -26,8 +28,32 @@ public class PlayerMovement : CharacterMovement
         player = GetComponent<PlayerManager>();
     }
 
+    private void OnEnable()
+    {
+        GameEventsManager.instance.playerEvents.onDisablePlayerMovement += DisableMovement;
+        GameEventsManager.instance.playerEvents.onEnablePlayerMovement += EnableMovement;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onDisablePlayerMovement -= DisableMovement;
+        GameEventsManager.instance.playerEvents.onEnablePlayerMovement -= EnableMovement;
+    }
+
+    private void DisableMovement()
+    {
+        isMovementEnabled = false;
+    }
+
+    private void EnableMovement()
+    {
+        isMovementEnabled = true;
+    }
+
     public void Movement()
     {
+        if(!isMovementEnabled)  return;
+
         GroundMovement();
         //Rotation();
     }
