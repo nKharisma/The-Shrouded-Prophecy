@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7611232868763057832}
   - component: {fileID: 6728133509477320423}
   - component: {fileID: 5250959331636618581}
+  - component: {fileID: 4389248661848022997}
   m_Layer: 0
   m_Name: Aspen
   m_TagString: Immunity
@@ -129,6 +130,27 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 5
   distanceFromPlayer: 2
+--- !u!95 &4389248661848022997
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905419152905201317}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36a31362e8d20b24fbaac97c8a009f33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8376401832067008071
 GameObject:
   m_ObjectHideFlags: 0
