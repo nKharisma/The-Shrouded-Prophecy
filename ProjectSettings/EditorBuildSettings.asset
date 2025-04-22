@@ -30,5 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_Final_Decision.unity
     guid: 6645aa599a7cddd4c9e7b15203df1425
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 86970f491ca9c4601ba44ce6d86d0b63,
+      type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0d1a895b01fcdb74e9fa7fe7da4c1e31,
       type: 3}
