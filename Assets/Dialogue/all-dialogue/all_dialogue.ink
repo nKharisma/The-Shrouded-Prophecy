@@ -11,7 +11,10 @@ VAR passedTraining = false
 VAR captainDuelPassed = false
 VAR sirDuelPassed = false
 VAR nice = false
+VAR passedKnightBattle = false
+VAR betrayal = false
 
 INCLUDE FirstImpressions.ink
 INCLUDE AWolfInSheepClothing.ink
+INCLUDE ARoadForgotten.ink
 

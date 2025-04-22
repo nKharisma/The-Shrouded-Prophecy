@@ -17,6 +17,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_Town.unity
     guid: c9f4a2cb20c5e4edf8adea101344ada1
+  - enabled: 1
+    path: Assets/Scenes/Scene_Shore.unity
+    guid: ed133649f7c734144a09f510712dd489
+  - enabled: 1
+    path: Assets/Scenes/Scene_Town_Night.unity
+    guid: bc88831d0c3c9774e9de84c38a713567
+  - enabled: 1
+    path: Assets/Scenes/Scene_Town_Night_Celebration.unity
+    guid: b0c15cebbc7706f49a82a772a5ec47a3
+  - enabled: 1
+    path: Assets/Scenes/Scene_Final_Decision.unity
+    guid: 6645aa599a7cddd4c9e7b15203df1425
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0d1a895b01fcdb74e9fa7fe7da4c1e31,
       type: 3}

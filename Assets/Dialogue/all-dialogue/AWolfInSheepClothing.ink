@@ -237,6 +237,5 @@ You were sent to investigate a threat, but what if this is what they meant?<i>
 "Be careful, Mira. This town can’t afford to lose people who care about it."
 <i>There’s no threat in his voice—just gravity. A warning wrapped in concern.</i>
 "Come on. If Aspen’s still out there, we need to find him—before something else does. Or worse…the city."
-~ CompleteQuest("AWolfInSheepsClothingSO")  
+~ CompleteQuest("AWolfInSheepsClothingSO")
 ->DONE
-

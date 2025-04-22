@@ -11,6 +11,12 @@ TagManager:
   - Healer
   - Slime
   - ElderIden
+  - Enemy
+  - TDSkillCheck
+  - Immunity
+  - Eryn
+  - Knights
+  - Mage
   layers:
   - Default
   - TransparentFX

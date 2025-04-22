@@ -55,7 +55,7 @@ public class RecruitMira : QuestStep
         {
             //Debug.Log("Current step index: " + base.currentStepIndex);
             //Debug.Log("Quest step index: " + quest.currentQuestStepIndex);
-            visualIndicatorObject.SetActive(true);
+            visualIndicator.enabled = true;
         }
     }
 

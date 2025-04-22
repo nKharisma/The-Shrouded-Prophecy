@@ -436,13 +436,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e446ac5071cb74aeab0e1244c8392504, type: 3}
   - {fileID: 21300000, guid: cde65fec7eafb4b25b61cb0707434326, type: 3}
   powerUpOutlines:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2201129526664733799}
+  - {fileID: 6813165172427582731}
   enemies:
   - {fileID: 6614593148094865046}
   - {fileID: 0}
   healthManager: {fileID: 7449101199582253320}
+  disabled: 1
 --- !u!1 &1505462964542514295
 GameObject:
   m_ObjectHideFlags: 0

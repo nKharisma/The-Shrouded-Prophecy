@@ -31,7 +31,6 @@ public class ArriveAtTheTownSquare : QuestStep
 		}
 		
 		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
-		spriteRenderer.enabled = true;
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
 		
@@ -44,6 +43,11 @@ public class ArriveAtTheTownSquare : QuestStep
 		if(!isTownSquareReached && isPlayerInRange)
 		{
 			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
+		
+		if(quest.currentQuestStepIndex == base.currentStepIndex)
+		{
+			spriteRenderer.enabled = true;
 		}
 	}
 

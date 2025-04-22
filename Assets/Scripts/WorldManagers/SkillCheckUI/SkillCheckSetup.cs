@@ -61,4 +61,29 @@ public class SkillCheckSetup : MonoBehaviour
         // Increment the skill check index for the next use
         currentSkillCheckIndex = (currentSkillCheckIndex + 1) % skillCheckUIInstances.Length;
     }
+    
+    public void SetupSkillCheckByIndex(int index)
+    {
+        if (skillCheckUIInstances == null || skillCheckUIInstances.Length == 0)
+        {
+            Debug.LogError("No skill check UI instances assigned.");
+            return;
+        }
+
+        if (index < 0 || index >= skillCheckUIInstances.Length)
+        {
+            Debug.LogError($"Invalid skill check index: {index}. Must be between 0 and {skillCheckUIInstances.Length - 1}.");
+            return;
+        }
+
+        GameObject skillCheckUIInstance = skillCheckUIInstances[index];
+        if (skillCheckUIInstance == null)
+        {
+            Debug.LogError("SkillCheckUIInstance is not assigned for index: " + index);
+            return;
+        }
+
+        SkillCheckManager.instance.SetSkillCheck(skillCheckUIInstance);
+        Debug.Log("SetSkillCheck called with: " + skillCheckUIInstance.name);
+    }
 }

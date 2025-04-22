@@ -15,7 +15,7 @@ public class CompanionManager : MonoBehaviour
         public bool isRecruited;
     }
     
-    public CompanionData currentlyEquippedCompanion;
+    //public CompanionData currentlyEquippedCompanion;
 
     public enum PowerType { HealBoost, ImmunityBoost, EnemyDisableBoost }
 

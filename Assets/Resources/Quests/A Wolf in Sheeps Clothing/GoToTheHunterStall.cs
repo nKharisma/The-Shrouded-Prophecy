@@ -31,8 +31,6 @@ public class GoToTheHunterStall : QuestStep
 		}
 		
 		spriteRenderer = wayPoint.GetComponent<SpriteRenderer>();
-		spriteRenderer.enabled = true;
-
 		
 		quest = QuestManager.instance.GetQuestById(base.questID);
 		
@@ -45,6 +43,11 @@ public class GoToTheHunterStall : QuestStep
 		if(!isAtHunterStall && isPlayerInRange)
 		{
 			DialogueManager.GetInstance().EnterDialogue(dialogueKnotName);
+		}
+		
+		if(quest.currentQuestStepIndex == base.currentStepIndex)
+		{
+			spriteRenderer.enabled = true;
 		}
 	}
 
