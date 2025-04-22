@@ -17,6 +17,10 @@ TagManager:
   - Eryn
   - Knights
   - Mage
+  - Enemy
+  - TDSkillCheck
+  - WaypointCanvas
+  - PixelShader
   layers:
   - Default
   - TransparentFX

@@ -36,4 +36,13 @@ public class PlayerEvents
             onPlayerTrustLevelChange(trustLevel);
         }
     }
+
+    public event Action<int> onPlayerWaypointChange;
+    public void ToggleNextWaypoint(int index)
+    {
+        if(onPlayerWaypointChange != null)
+        {
+            onPlayerWaypointChange(index);
+        }
+    }
 }

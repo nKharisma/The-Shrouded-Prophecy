@@ -749,6 +749,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill Check and Battle UI 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3062345686263088548, guid: 2e9ddfb237db1495589228d68eee30b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3464181595413285725, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -787,7 +792,7 @@ PrefabInstance:
     - target: {fileID: 4483468605490139318, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
       propertyPath: startWaitSeconds
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4660339309285315939, guid: 2e9ddfb237db1495589228d68eee30b7,
         type: 3}
