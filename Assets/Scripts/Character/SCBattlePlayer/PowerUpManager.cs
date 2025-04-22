@@ -15,6 +15,7 @@ public class PowerUpManager : MonoBehaviour
 
     private int currentPowerUp = 0;
     [SerializeField] private int disabled = 1;
+    private bool isCooldownActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,18 +34,21 @@ public class PowerUpManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Q))
             {
                 ChangePU(-1);
+                UpdatePUSelection();
             }
 
             // else if(inputActions.PlayerMovement.RightPowerUp.WasPressedThisFrame())
             if(Input.GetKeyDown(KeyCode.E))
             {
                 ChangePU(1);
+                UpdatePUSelection();
             }
 
             // else if(inputActions.PlayerMovement.SelectPowerUp.WasPressedThisFrame())
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) && !isCooldownActive)
             {
                 ActivatePU(currentPowerUp);
+                //StartCoroutine(PowerUpCooldown(10f));
             }
         }
 
@@ -63,6 +67,7 @@ public class PowerUpManager : MonoBehaviour
         for (int i = 0; i < powerUpOutlines.Length; i++)
         {
             powerUpOutlines[i].enabled = (i == currentPowerUp);
+            //Debug.Log("PowerUp " + i + " is " + (i == currentPowerUp ? "enabled" : "disabled"));
         }
     }
     
@@ -122,5 +127,16 @@ public class PowerUpManager : MonoBehaviour
 
                 break;
         }
+    }
+    
+    IEnumerator PowerUpCooldown(float cooldownTime)
+    {
+        isCooldownActive = true; // Activate cooldown
+        Debug.Log("Power-up cooldown started.");
+
+        yield return new WaitForSeconds(cooldownTime); // Wait for the cooldown duration
+
+        isCooldownActive = false; // Deactivate cooldown
+        Debug.Log("Power-up cooldown ended.");
     }
 }

@@ -153,12 +153,10 @@ Mira:
     "We try. Hope’s hard to come by out here, but we find ways to hold onto it."
     ~ TrustGained("5")
     -> continue
-    ~ ToggleNextWaypoint("1")
 * [Doesn’t the city get suspicious when all this goes up?]
     Mira: "They don’t know. Or maybe they don’t care enough to look this far out. We’re not supposed to exist."
     //neutral
     -> continue
-    ~ ToggleNextWaypoint("1")
 * [This place is a ticking time bomb. The city <b>will</b> find it.]
     Mira: "...Maybe. But until they do, we’ll keep helping each other. That’s all we can do."
     ~ TrustLost("5")
@@ -189,7 +187,6 @@ Mira:
 
 === healers_tent === 
 <i>Mira leads you toward a quieter part of the camp. A soft herbal scent lingers in the air as you approach a canvas tent marked with stitched symbols—some worn, some freshly patched. Inside, you catch glimpses of bundled herbs, makeshift bandages, and a few worn cots lined up in careful rows.</i>
-
 "This is the healer’s tent. We make do with what we can find—bark salves, swamp herbs, anything that still grows despite the city’s reach."
 * [You do all the healing here?]
     Mira: "I’m one of a few. I help where I can, but it’s not easy. No steady supplies. No proper tools. Some days, it’s just hope and whatever nature gives us."

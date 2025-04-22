@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3a531d4f8b7e84f86b2dfe235f5f5c, type: 3}
+  m_Name: AForkInTheRoadSO
+  m_EditorClassIdentifier: 
+  <questID>k__BackingField: AForkInTheRoad
+  displayName: 
+  requiredTrustLevel: 0
+  requiredPreviousQuests:
+  - {fileID: 11400000, guid: b45c6a6996494d5488cb96c9a029ce29, type: 2}
+  - {fileID: 11400000, guid: c8b6a100f902e0744b9580c6cace07c7, type: 2}
+  questStepsPrefabs:
+  - {fileID: 4593146714587248423, guid: 780d116ef6d50dc4783cc9263e25845d, type: 3}
+  - {fileID: 4950928844569634767, guid: 944e667c805254448811951ae6ed6a63, type: 3}
+  - {fileID: 1509780280513870745, guid: 55aafff14ceeaab4bac2c45056f38795, type: 3}
+  - {fileID: 4344132972327706113, guid: f7cccdeef73375544b181be1d33bf780, type: 3}
+  - {fileID: 5580872650258866599, guid: b62d983b8b8e11248851f28eb636be1b, type: 3}
+  - {fileID: 6148931856259866755, guid: 7778ad999206a31498df8519b7184e3a, type: 3}
+  - {fileID: 2231045013108032202, guid: 2814773e161ced6438ea6d26f2c02e4d, type: 3}
+  - {fileID: 9181009438413859433, guid: 89b9a73669d4f184bbecc4d167a940fa, type: 3}
+  - {fileID: 1429747432506812953, guid: d177dfd65868e7645835bb250435bd9f, type: 3}
+  - {fileID: 1098844909993009150, guid: 8f0d08ed58ea2b748b7b5f012626d652, type: 3}
+  rewardTrustLevel: 10

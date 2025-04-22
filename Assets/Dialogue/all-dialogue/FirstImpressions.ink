@@ -5,11 +5,10 @@
 
 = where_captain
 "You'll find him in the training grounds near the capital. Try not to embarrass yourself."
-* [Okay, I’ll try not to.]
+* [Okay, I’ll try not to.]  
     <i>The soldier gives you a knowing look.</i>  
     "That’s what they all say. Good luck, kid."
     ~ StartQuest("FirstImpressionsSO")
-    ~ ToggleNextWaypoint("1")
    //~ LoadSceneInGame("2", "-42.4", "15.3", "39.34")
 -> DONE
 
@@ -29,7 +28,6 @@
 
         <i>He gestures to the dummy again, eyes narrowing.</i>  
         "Now stop asking questions and start training."
-        ~ ToggleNextWaypoint("2")
 
 -> DONE
 
@@ -55,8 +53,7 @@ What would you like to do?
 <i>The Captain observes your training from afar.</i>
 
 {result == 1:  
-    ~ passedTraining = true
-    ~ ToggleNextWaypoint("3")
+    ~ passedTraining = true  
     "Not bad. Up to you if you want to go again."  
     -> TrainingDummyDialogue  
 - else:  
@@ -93,7 +90,6 @@ What do you say?
 
 {result == 1:
     ~  sirDuelPassed = true
-    ~ ToggleNextWaypoint("4")
 "Hah! You’ve got some moves. Maybe you’re not a lost cause after all."
 <i>He grins, rubbing his knuckles absentmindedly before cracking his neck one last time.</i>
 "Alright, I’ll let you go make a fool of yourself in front of the Captain. Try not to die, yeah?"
@@ -125,8 +121,7 @@ Are you prepared?
 <i>The Captain studies you, gauging your performance.</i>
 
 {result == 1:  
-    ~ captainDuelPassed = true
-    ~ ToggleNextWaypoint("4")
+    ~ captainDuelPassed = true  
     <b>The Captain steps back, lowering his weapon back down to his side.</b>  
     "Not bad. You might actually survive out there. Don't get too cocky, though."  
     -> DONE  
