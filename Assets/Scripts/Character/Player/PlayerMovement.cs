@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : CharacterMovement
 {
@@ -28,17 +29,31 @@ public class PlayerMovement : CharacterMovement
         player = GetComponent<PlayerManager>();
     }
 
-    private void OnEnable()
+	private void Start()
+{
+    // Check if the active scene is not the main menu (index 0)
+    if (SceneManager.GetActiveScene().buildIndex != 0)
     {
-        GameEventsManager.instance.playerEvents.onDisablePlayerMovement += DisableMovement;
-        GameEventsManager.instance.playerEvents.onEnablePlayerMovement += EnableMovement;
+        if (GameEventsManager.instance != null && GameEventsManager.instance.playerEvents != null)
+        {
+            GameEventsManager.instance.playerEvents.onDisablePlayerMovement += DisableMovement;
+            GameEventsManager.instance.playerEvents.onEnablePlayerMovement += EnableMovement;
+        }
     }
+}
 
-    private void OnDisable()
+private void OnDisable()
+{
+    // Check if the active scene is not the main menu (index 0)
+    if (SceneManager.GetActiveScene().buildIndex != 0)
     {
-        GameEventsManager.instance.playerEvents.onDisablePlayerMovement -= DisableMovement;
-        GameEventsManager.instance.playerEvents.onEnablePlayerMovement -= EnableMovement;
+        if (GameEventsManager.instance != null && GameEventsManager.instance.playerEvents != null)
+        {
+            GameEventsManager.instance.playerEvents.onDisablePlayerMovement -= DisableMovement;
+            GameEventsManager.instance.playerEvents.onEnablePlayerMovement -= EnableMovement;
+        }
     }
+}
 
     private void DisableMovement()
     {

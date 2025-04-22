@@ -11,6 +11,7 @@ public class QuestLogUI : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private GameObject contentParent;
+    [SerializeField] private GameObject closedBookToggle;
     [SerializeField] private QuestLogScrollingList scrollingList;
     [SerializeField] private TextMeshProUGUI questDisplayNameText;
     [SerializeField] private TextMeshProUGUI questStatusText; // or state?
@@ -25,11 +26,16 @@ public class QuestLogUI : MonoBehaviour
     private void OnEnable()
     {
         toggleQuestLogAction.action.performed += OnToggleQuestLog; // Bind the input action
+        GameEventsManager.instance.dialogueEvents.onDialogueStart += OnDialogueStart;
+        GameEventsManager.instance.dialogueEvents.onDialogueComplete += OnDialogueComplete;
         toggleQuestLogAction.action.Enable();
+        questManager = QuestManager.instance;
     }
     private void OnDisable()
     {
         toggleQuestLogAction.action.performed -= OnToggleQuestLog; // Unbind the input action
+        GameEventsManager.instance.dialogueEvents.onDialogueStart -= OnDialogueStart;
+        GameEventsManager.instance.dialogueEvents.onDialogueComplete -= OnDialogueComplete;
         toggleQuestLogAction.action.Disable();
     }
 
@@ -38,11 +44,23 @@ public class QuestLogUI : MonoBehaviour
         if (contentParent.activeInHierarchy)
         {
             HideUI();
+            closedBookToggle.SetActive(true);
         }
         else
         {
             ShowUI();
+            closedBookToggle.SetActive(false);
         }
+    }
+    
+    private void OnDialogueStart()
+    {
+        closedBookToggle.SetActive(false);
+    }
+    
+    private void OnDialogueComplete()
+    {
+        closedBookToggle.SetActive(true);
     }
 
     private void ShowUI()
@@ -86,6 +104,7 @@ public class QuestLogUI : MonoBehaviour
     {
         // quest name
         questDisplayNameText.text = quest.questInfoSO.displayName;
+        questStatusText.text = quest.GetFullStatusText();
 
         // requirements
         requiredTrustLevelText.text = "Trust Level " + quest.questInfoSO.requiredTrustLevel.ToString();

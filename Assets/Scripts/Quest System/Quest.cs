@@ -93,4 +93,41 @@ public class Quest
     {
         return new QuestData(questState, currentQuestStepIndex, questStepStates);
     }
+    
+    public string GetFullStatusText()
+    {
+        string fullStatus = "";
+
+        if (questState == QuestState.Requirements_Not_Met)
+        {
+            fullStatus = "Requirements are not yet met to start this quest.";
+        }
+        else if (questState == QuestState.Can_Start)
+        {
+            fullStatus = "This quest can be started!";
+        }
+        else 
+        {
+            // display all previous quests with strikethroughs
+            for (int i = 0; i < currentQuestStepIndex; i++)
+            {
+                fullStatus += "<s>" + questStepStates[i].status + "</s>\n";
+            }
+            // display the current step, if it exists
+            if (CurrentStepExists())
+            {
+                fullStatus += questStepStates[currentQuestStepIndex].status;
+            }
+            // when the quest is completed or turned in
+            if (questState == QuestState.Can_Complete)
+            {
+                fullStatus += "The quest is ready to be turned in.";
+            }
+            else if (questState == QuestState.Completed)
+            {
+                fullStatus += "The quest has been completed!";
+            }
+        }
+        return fullStatus;
+    }
 }

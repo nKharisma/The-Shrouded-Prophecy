@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3a531d4f8b7e84f86b2dfe235f5f5c, type: 3}
   m_Name: AForkInTheRoadSO
   m_EditorClassIdentifier: 
-  <questID>k__BackingField: AForkInTheRoad
-  displayName: 
-  requiredTrustLevel: 0
+  <questID>k__BackingField: AForkInTheRoadSO
+  displayName: A Fork In The Road
+  requiredTrustLevel: 5
   requiredPreviousQuests:
   - {fileID: 11400000, guid: b45c6a6996494d5488cb96c9a029ce29, type: 2}
   - {fileID: 11400000, guid: c8b6a100f902e0744b9580c6cace07c7, type: 2}
