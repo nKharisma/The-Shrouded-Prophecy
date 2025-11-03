@@ -43,7 +43,3 @@ The Shrouded Prophecy is a narrative-driven Unity game blending story-first desi
 - Presentation (Rendering, Audio, Effects)
   - Post-processing and audio polish reinforce pacing and feedback (skill-check results, enemy hits, dialogue cues).
   - Sprite-based indicators and sorting control ensure clear visual hierarchy.
-
-## TODO
-  - Small fixes to the Quest Log UI
-  - Debugging to the save system
